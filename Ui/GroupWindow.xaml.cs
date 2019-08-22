@@ -18,7 +18,7 @@ namespace BierPongTurnier.Ui
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = this.closeCount++ < 5;
+            e.Cancel = this.closeCount++ < Constants.CLOSE_WINDOW_SAFETY;
         }
 
         private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
