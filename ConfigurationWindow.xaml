@@ -1,0 +1,25 @@
+﻿<Window x:Class="BierPongTurnier.ConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BierPongTurnier"
+        mc:Ignorable="d"
+        Title="Turnier!" Height="180" Width="320">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Teams" VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding TeamCount}" VerticalAlignment="Center"  TextAlignment="Center" FontSize="18"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Gruppen" VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding GroupCount}"  VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="BierPong!" Click="Button_Click" FontSize="18" Background="Blue" Foreground="White"/> 
+    </Grid>
+</Window>
