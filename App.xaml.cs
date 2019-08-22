@@ -37,7 +37,7 @@ namespace BierPongTurnier
             {
                 int grNr = i % groupCount;
                 //int tNr = grNr * groupCount + groups[grNr].Teams.Count + 1;
-                groups[grNr].Teams.Add(new Team("Team " + (i + 1)));
+                groups[grNr].Teams.Add(new Team() { Name = "Team " + (i + 1) });
             }
 
             for (int i = 0; i < groupCount; i++)

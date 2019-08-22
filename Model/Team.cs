@@ -13,9 +13,8 @@
             }
         }
 
-        public Team(string name) : base()
+        public Team() : base()
         {
-            this.Name = name;
         }
     }
 }
