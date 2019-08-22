@@ -75,33 +75,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BaseNotifyPropertyChanged.cs" />
-    <Compile Include="BPTObject.cs" />
-    <Compile Include="CascadingObservableCollection.cs" />
-    <Compile Include="ConfigurationWindow.xaml.cs">
+    <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Model\BPTObject.cs" />
+    <Compile Include="Common\CascadingObservableCollection.cs" />
+    <Compile Include="Ui\ConfigurationWindow.xaml.cs">
       <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="ControlWindow.xaml.cs">
+    <Compile Include="Ui\ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameResult.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="HighlightWinnerConverter.cs" />
-    <Compile Include="RankingController.cs" />
-    <Compile Include="RankingEntry.cs" />
-    <Compile Include="Team.cs" />
-    <Compile Include="Tournament.cs" />
-    <Page Include="ConfigurationWindow.xaml">
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\GameResult.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Ui\Converter\HighlightWinnerConverter.cs" />
+    <Compile Include="Model\RankingController.cs" />
+    <Compile Include="Model\RankingEntry.cs" />
+    <Compile Include="Model\Team.cs" />
+    <Compile Include="Model\Tournament.cs" />
+    <Page Include="Ui\ConfigurationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ControlWindow.xaml">
+    <Page Include="Ui\ControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GroupWindow.xaml">
+    <Page Include="Ui\GroupWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -109,7 +109,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GroupWindow.xaml.cs">
+    <Compile Include="Ui\GroupWindow.xaml.cs">
       <DependentUpon>GroupWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

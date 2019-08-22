@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BierPongTurnier.Model;
+using BierPongTurnier.Ui;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace BierPongTurnier

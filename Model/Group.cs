@@ -1,7 +1,8 @@
-﻿using System;
+﻿using BierPongTurnier.Common;
+using System;
 using System.Collections.ObjectModel;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public class Group : BPTObject
     {

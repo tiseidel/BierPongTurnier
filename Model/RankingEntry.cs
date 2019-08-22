@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using BierPongTurnier.Common;
+using System.Collections.Generic;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public class BeerScore : BaseNotifyPropertyChanged
     {

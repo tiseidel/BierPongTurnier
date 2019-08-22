@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Common
 {
     public abstract class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {

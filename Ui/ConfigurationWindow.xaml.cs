@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Ui
 {
     /// <summary>
     /// Interaction logic for ConfigurationWindow.xaml

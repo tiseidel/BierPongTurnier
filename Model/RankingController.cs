@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using BierPongTurnier.Ui;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public class RankingController
     {
@@ -54,7 +55,7 @@ namespace BierPongTurnier
                     beersGood += this.GetGoodBeers(g, t);
                     beersBad += this.GetBadBeers(g, t);
 
-                  
+
                 }
                 r.BeerScore.Good = beersGood;
                 r.BeerScore.Bad = beersBad;

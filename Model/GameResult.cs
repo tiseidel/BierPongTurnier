@@ -1,4 +1,4 @@
-﻿namespace BierPongTurnier
+﻿namespace BierPongTurnier.Model
 {
     public enum GameResult
     {

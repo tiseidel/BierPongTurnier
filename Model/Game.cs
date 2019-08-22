@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public enum TeamPosition
     {

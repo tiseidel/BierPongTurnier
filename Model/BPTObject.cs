@@ -1,7 +1,8 @@
-﻿using System;
+﻿using BierPongTurnier.Common;
+using System;
 using System.Collections.Generic;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public class BPTObject : BaseNotifyPropertyChanged
     {

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Model
 {
     public class Tournament : BPTObject
     {
-        public ObservableCollection<Group> Groups {get;}
+        public ObservableCollection<Group> Groups { get; }
 
         public Tournament() : base()
         {

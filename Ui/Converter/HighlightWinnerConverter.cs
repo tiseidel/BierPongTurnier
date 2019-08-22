@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BierPongTurnier.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace BierPongTurnier
+namespace BierPongTurnier.Ui.Converter
 {
     public class HighlightWinnerConverter : IValueConverter
     {
@@ -16,7 +17,7 @@ namespace BierPongTurnier
             var self = (TeamPosition)parameter;
             var pos = (TeamPosition)value;
 
-            if(self == pos && pos != TeamPosition.NONE)
+            if (self == pos && pos != TeamPosition.NONE)
             {
                 Console.WriteLine("HIGHLIGHT WINNER");
                 return FontWeights.Bold;
