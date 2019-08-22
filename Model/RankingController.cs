@@ -54,8 +54,6 @@ namespace BierPongTurnier.Model
                     }
                     beersGood += this.GetGoodBeers(g, t);
                     beersBad += this.GetBadBeers(g, t);
-
-
                 }
                 r.BeerScore.Good = beersGood;
                 r.BeerScore.Bad = beersBad;

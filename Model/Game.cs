@@ -157,7 +157,6 @@ namespace BierPongTurnier.Model
                 this.WinnerPosition = TeamPosition.NONE;
             }
             this.UpdateFonts();
-
         }
 
         public void UpdateFonts()
