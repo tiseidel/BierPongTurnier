@@ -1,4 +1,6 @@
-﻿using BierPongTurnier.Model;
+﻿#define SKIP_CREATION_FOR_TESTING
+
+using BierPongTurnier.Model;
 using BierPongTurnier.Ui;
 using System.Collections.Generic;
 using System.Windows;
@@ -13,11 +15,13 @@ namespace BierPongTurnier
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            /*
+
+#if SKIP_CREATION_FOR_TESTING
+            this.OnBeerPongConfiguration(1, 4);
+#else
             var configWindow = new ConfigurationWindow(this);
             configWindow.Show();
-            */
-            this.OnBeerPongConfiguration(1, 4);
+#endif
         }
 
         public void OnBeerPongConfiguration(int groupCount, int teamCount)
