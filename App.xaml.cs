@@ -26,6 +26,7 @@ namespace BierPongTurnier
 
         public void OnBeerPongConfiguration(int groupCount, int teamCount)
         {
+            int left = 0; int right = 1;
             var groups = new List<Group>();
             for (int i = 0; i < groupCount;)
             {
@@ -46,34 +47,55 @@ namespace BierPongTurnier
                 {
                     case 3:
                         {
-                            int[] l = { 1, 2, 3 };
-                            int[] r = { 2, 3, 1 };
-
-                            for (int j = 0; j < r.Length; j++)
+                            int[,] m =
                             {
-                                g.Games.Add(new Game(g.Teams[l[j] - 1], g.Teams[r[j] - 1]));
+                                {1, 2},
+                                {2, 3},
+                                {3, 1}
+                            };
+                            for (int j = 0; j < m.Length / 2; j++)
+                            {
+                                g.Games.Add(new Game(g.Teams[m[j, left] - 1], g.Teams[m[j, right] - 1]));
                             }
                         }
                         break;
 
                     case 4:
                         {
-                            int[] l = { 2, 3, 4, 1, 4, 2 };
-                            int[] r = { 1, 4, 2, 3, 1, 3 };
-                            for (int j = 0; j < r.Length; j++)
+                            int[,] m =
+                             {
+                                {2, 1},
+                                {3, 4},
+                                {4, 2},
+                                {1, 3},
+                                {4, 1},
+                                {2, 3}
+                            };
+                            for (int j = 0; j < m.Length/2; j++)
                             {
-                                g.Games.Add(new Game(g.Teams[l[j] - 1], g.Teams[r[j] - 1]));
+                                g.Games.Add(new Game(g.Teams[m[j, left] - 1], g.Teams[m[j, right] - 1]));
                             }
                         }
                         break;
 
                     case 5:
                         {
-                            int[] l = { 1, 2, 3, 4, 5, 1, 4, 3, 1, 4 };
-                            int[] r = { 4, 5, 1, 2, 3, 2, 5, 2, 5, 3 };
-                            for (int j = 0; j < r.Length; j++)
+                            int[,] m =
                             {
-                                g.Games.Add(new Game(g.Teams[l[j] - 1], g.Teams[r[j] - 1]));
+                                {1, 4},
+                                {2, 5},
+                                {3, 1},
+                                {4, 2},
+                                {5, 3},
+                                {1, 2},
+                                {4, 5},
+                                {3, 2},
+                                {1, 5},
+                                {4, 3}
+                            };
+                            for (int j = 0; j < m.Length / 2; j++)
+                            {
+                                g.Games.Add(new Game(g.Teams[m[j, left] - 1], g.Teams[m[j, right] - 1]));
                             }
                         }
                         break;
