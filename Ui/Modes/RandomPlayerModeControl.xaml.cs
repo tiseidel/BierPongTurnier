@@ -12,7 +12,7 @@ namespace BierPongTurnier.Ui.Modes
 {
     public partial class RandomPlayerModeControl : UserControl, INotifyPropertyChanged
     {
-        private Random rng = new Random();
+        private Random random = new Random();
 
         private string _tournamentName;
 
@@ -76,15 +76,10 @@ namespace BierPongTurnier.Ui.Modes
 
         private bool CanStart()
         {
-            return !string.IsNullOrWhiteSpace(this.TournamentName) && this.IsGroupNumberValid() && this.PlayerCount > 3;
-        }
-
-        private bool IsGroupNumberValid()
-        {
             try
             {
-                var i = int.Parse(this._groupCount);
-                return i > 0;
+                var gc = int.Parse(this._groupCount);
+                return !string.IsNullOrWhiteSpace(this.TournamentName) && this.PlayerCount >= gc * 4;
             }
             catch (Exception)
             {
@@ -102,7 +97,7 @@ namespace BierPongTurnier.Ui.Modes
 
             var list = this.Convert();
             for (int i = 0; i < 42; i++)
-                this.Shuffle(list);
+                Extensions.Shuffle(list, this.random);
             var groups = Creator.FromPlayers(list, gc);
 
             new ControlWindow(new Tournament(groups) { FileName = TournamentName }).Show();
@@ -151,19 +146,6 @@ namespace BierPongTurnier.Ui.Modes
                 list[i] = list[i].Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
             }
             return list;
-        }
-
-        public void Shuffle(IList<string> list)
-        {
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                string value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
