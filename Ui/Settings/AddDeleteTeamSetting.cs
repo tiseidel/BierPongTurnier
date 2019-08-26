@@ -83,6 +83,7 @@ namespace BierPongTurnier.Ui.Settings
             {
                 this.AddTeam();
             }
+            Creator.CreateRoundRobin(this._selectedGroup);
             this.Name = "";
         }
 
