@@ -1,6 +1,7 @@
-﻿using System.ComponentModel;
+﻿using BierPongTurnier.Model;
+using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace BierPongTurnier.Ui.Modes
@@ -12,11 +13,23 @@ namespace BierPongTurnier.Ui.Modes
 
     public partial class ManualModeControl : UserControl, INotifyPropertyChanged
     {
-        private int _teamCount;
+        private string _teamCount;
 
-        private int _groupCount;
+        private string _groupCount;
 
-        public int TeamCount
+        private string _tournamentName;
+
+        public string TournamentName
+        {
+            get => this._tournamentName;
+            set
+            {
+                this._tournamentName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public string TeamCount
         {
             get => this._teamCount;
             set
@@ -26,7 +39,7 @@ namespace BierPongTurnier.Ui.Modes
             }
         }
 
-        public int GroupCount
+        public string GroupCount
         {
             get => this._groupCount;
             set
@@ -36,21 +49,50 @@ namespace BierPongTurnier.Ui.Modes
             }
         }
 
-        public IBeerpongConfigurationCallback ConfigurationCallback { get; private set; }
+        public Command StartCommand { get; }
 
-        public ManualModeControl(IBeerpongConfigurationCallback configurationCallback)
+        public ManualModeControl()
         {
             this.InitializeComponent();
+
+            this.StartCommand = new Command(this.Start, this.CanStart);
+
             this.DataContext = this;
-            this.ConfigurationCallback = configurationCallback;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private bool CanStart()
         {
-            if (this.GroupCount > 0 && this.TeamCount >= (this.GroupCount * 2))
+            try
             {
-                this.ConfigurationCallback.OnBeerPongConfiguration(this.GroupCount, this.TeamCount);
-                this.ConfigurationCallback = null;
+                int gc = int.Parse(this._groupCount);
+                int tc = int.Parse(this._teamCount);
+
+                return gc > 0 && tc >= (gc * 2) && !string.IsNullOrWhiteSpace(this.TournamentName);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+         
+        }
+
+        private void Start()
+        {
+            if (!this.CanStart())
+            {
+                return;
+            }
+
+            int gc = int.Parse(this._groupCount);
+            int tc = int.Parse(this._teamCount);
+
+            var groups = Creator.FromCount(tc, gc);
+
+            new ControlWindow(new Tournament(groups) { FileName = TournamentName }).Show();
+
+            foreach (Group g in groups)
+            {
+                new GroupWindow() { DataContext = g }.Show();
             }
         }
 
