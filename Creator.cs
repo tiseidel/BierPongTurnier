@@ -88,7 +88,25 @@ namespace BierPongTurnier
 
         public static List<Group> FromTeams(List<string> teams, int groupCount)
         {
-            return new List<Group>();
+            int teamCount = teams.Count;
+            var groups = new List<Group>();
+
+            for (int i = 0; i < groupCount;)
+            {
+                groups.Add(new Group("Tisch " + ++i));
+            }
+
+            for (int i = 0; i < teamCount; i++)
+            {
+                int grNr = i % groupCount;
+                groups[grNr].Teams.Add(new Team() { Name = teams[i]});
+            }
+
+            foreach (Group group in groups)
+            {
+                Creator.CreateRoundRobin(group);
+            }
+            return groups;
         }
 
         public static void CreateRoundRobin(Group group)

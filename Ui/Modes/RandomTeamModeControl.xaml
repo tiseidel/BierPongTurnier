@@ -7,15 +7,87 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" />
-        <Button
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            Text="Turniername:" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            FontSize="14"
+            MaxLines="1"
+            Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock
             Grid.Row="1"
-            Background="Blue"
+            Grid.Column="0"
+            Padding="2,8,0,0"
+            FontSize="14"
+            Text="Teamnamen:" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Padding="2"
+            AcceptsReturn="True"
+            BorderThickness="1,0,1,0"
+            FontSize="14"
+            Text="{Binding TeamInput, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            Text="Aktuelle Teamanzahl:" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Padding="2"
+            BorderThickness="1,0,1,0"
+            FontSize="14"
+            IsEnabled="False"
+            MaxLines="1"
+            Text="{Binding TeamCount, Mode=OneWay}" />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            Text="Anzahl Gruppen:" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            FontSize="14"
+            MaxLines="1"
+            Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="CornflowerBlue"
+            Command="{Binding StartCommand}"
             Content="BierPong!"
-            FontSize="18"
-            Foreground="White" />
+            Foreground="White"
+            TextBlock.FontFamily="Arial"
+            TextBlock.FontSize="22"
+            TextBlock.FontWeight="DemiBold" />
     </Grid>
 </UserControl>
