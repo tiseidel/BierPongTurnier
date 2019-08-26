@@ -77,6 +77,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Creator.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
     <Compile Include="Common\CascadingObservableCollection.cs" />
     <Compile Include="Ui\Command.cs" />
