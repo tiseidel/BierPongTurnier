@@ -12,12 +12,10 @@ namespace BierPongTurnier.Model
 
         public RankingController Ranking { get; }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public Group(string name) : base()
+        public Group() : base()
         {
-            this.Name = name;
-
             this.Teams = new ObservableCollection<Team>();
             this.Games = new CascadingObservableCollection<Game>();
             this.Ranking = new RankingController(this);

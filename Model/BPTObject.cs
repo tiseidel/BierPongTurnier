@@ -6,7 +6,7 @@ namespace BierPongTurnier.Model
 {
     public class BPTObject : BaseNotifyPropertyChanged
     {
-        public Guid Id { get; }
+        public Guid Id { get; set; }
 
         public BPTObject()
         {

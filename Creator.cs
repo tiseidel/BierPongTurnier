@@ -11,7 +11,7 @@ namespace BierPongTurnier
 
             for (int i = 0; i < groupCount;)
             {
-                groups.Add(new Group("Tisch " + ++i));
+                groups.Add(new Group() { Name = "Tisch " + ++i });
             }
 
             for (int i = 0; i < teamCount; i++)
@@ -40,7 +40,7 @@ namespace BierPongTurnier
 
             for (int i = 0; i < groupCount;)
             {
-                groups.Add(new Group("Tisch " + ++i));
+                groups.Add(new Group() { Name = "Tisch " + ++i });
             }
 
             int x = 0;
@@ -93,13 +93,13 @@ namespace BierPongTurnier
 
             for (int i = 0; i < groupCount;)
             {
-                groups.Add(new Group("Tisch " + ++i));
+                groups.Add(new Group() { Name = "Tisch " + ++i });
             }
 
             for (int i = 0; i < teamCount; i++)
             {
                 int grNr = i % groupCount;
-                groups[grNr].Teams.Add(new Team() { Name = teams[i]});
+                groups[grNr].Teams.Add(new Team() { Name = teams[i] });
             }
 
             foreach (Group group in groups)
