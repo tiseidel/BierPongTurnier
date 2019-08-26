@@ -1,6 +1,5 @@
 ﻿using BierPongTurnier.Model;
 using System;
-using System.Windows.Input;
 
 namespace BierPongTurnier.Ui
 {

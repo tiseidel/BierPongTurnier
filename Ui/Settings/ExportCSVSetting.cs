@@ -102,7 +102,7 @@ namespace BierPongTurnier.Ui.Settings
                 s += "\n";
             }
 
-            if(isAutoSave) filename += "_autosave";
+            if (isAutoSave) filename += "_autosave";
             filename += "_" + DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss");
             var path = @"C:\Users\timme\Desktop\BierPongTurnier\" + filename;
 

@@ -73,7 +73,6 @@ namespace BierPongTurnier.Ui.Modes
             {
                 return false;
             }
-         
         }
 
         private void Start()

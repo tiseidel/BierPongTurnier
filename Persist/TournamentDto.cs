@@ -27,12 +27,12 @@ namespace BierPongTurnier.Persist
         public Tournament Convert()
         {
             var list = new List<Group>();
-            foreach(GroupDto g in this.Groups)
+            foreach (GroupDto g in this.Groups)
             {
                 list.Add(g.Convert());
             }
 
-           return new Tournament(list) { Id = this.Id, FileName = this.Name };
+            return new Tournament(list) { Id = this.Id, FileName = this.Name };
         }
     }
 }
