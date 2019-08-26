@@ -40,7 +40,7 @@ namespace BierPongTurnier.Ui
                 new Mode(){ Title = "Zufall (Spieler)", Command = new Command(this.SelectRandomPlayer)},
                 new Mode(){ Title = "Zufall (Teams)", Command = new Command(this.SelectRandomTeam)},
                 new Mode(){ Title = "Manuell", Command = new Command(this.SelectManualMode)},
-                new Mode(){ Title = "Importieren", Command = new Command(this.SelectManualMode)}
+                new Mode(){ Title = "Importieren", Command = new Command(this.SelectImport)}
             };
 
             this.DataContext = this;
@@ -59,6 +59,11 @@ namespace BierPongTurnier.Ui
         public void SelectManualMode()
         {
             this.UI = new ManualModeControl();
+        }
+
+        public void SelectImport()
+        {
+            this.UI = new ImportModeControl();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

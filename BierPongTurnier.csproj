@@ -96,6 +96,9 @@
     <Compile Include="Ui\ModeSelectionWindow.xaml.cs">
       <DependentUpon>ModeSelectionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\Modes\ImportModeControl.xaml.cs">
+      <DependentUpon>ImportModeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Modes\ManualModeControl.xaml.cs">
       <DependentUpon>ManualModeControl.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ui\ModeSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Modes\ImportModeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +175,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\FileDestination_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
