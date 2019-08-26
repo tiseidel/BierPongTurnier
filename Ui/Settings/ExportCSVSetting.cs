@@ -1,4 +1,6 @@
 ﻿using BierPongTurnier.Model;
+using BierPongTurnier.Persist;
+using Newtonsoft.Json;
 using System;
 using System.Windows.Input;
 
@@ -102,10 +104,24 @@ namespace BierPongTurnier.Ui.Settings
 
             if(isAutoSave) filename += "_autosave";
             filename += "_" + DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss");
-            var path = @"C:\Users\timme\Desktop\BierPongTurnier\" + filename + ".csv";
+            var path = @"C:\Users\timme\Desktop\BierPongTurnier\" + filename;
+
             try
             {
-                System.IO.File.WriteAllText(path, s);
+                System.IO.File.WriteAllText(path + ".csv", s);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(path);
+                Console.WriteLine(ex);
+            }
+
+            var dto = new TournamentDto().ToDto(this.Tournament);
+            string output = JsonConvert.SerializeObject(dto);
+
+            try
+            {
+                System.IO.File.WriteAllText(path + ".beer", output);
             }
             catch (Exception ex)
             {

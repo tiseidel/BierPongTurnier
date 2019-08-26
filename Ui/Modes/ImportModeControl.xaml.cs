@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using BierPongTurnier.Model;
+using BierPongTurnier.Persist;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Controls;
 
@@ -28,6 +31,14 @@ namespace BierPongTurnier.Ui.Modes
 
         private void ParseFile(string file)
         {
+            var tournament = JsonConvert.DeserializeObject<TournamentDto>(file).Convert();
+
+            new ControlWindow(tournament).Show();
+
+            foreach (Group g in tournament.Groups)
+            {
+                new GroupWindow() { DataContext = g }.Show();
+            }
         }
     }
 }
