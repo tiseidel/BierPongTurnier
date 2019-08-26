@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace BierPongTurnier.Model
 {
@@ -6,9 +7,11 @@ namespace BierPongTurnier.Model
     {
         public ObservableCollection<Group> Groups { get; }
 
-        public Tournament() : base()
+        public string FileName { get; internal set; }
+
+        public Tournament(List<Group> groups) : base()
         {
-            this.Groups = new ObservableCollection<Group>();
+            this.Groups = new ObservableCollection<Group>(groups);
         }
     }
 }

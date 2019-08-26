@@ -76,11 +76,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Creator.cs" />
     <Compile Include="Model\BPTObject.cs" />
     <Compile Include="Common\CascadingObservableCollection.cs" />
-    <Compile Include="Ui\ConfigurationWindow.xaml.cs">
-      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Ui\Command.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Ui\ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
@@ -93,10 +92,23 @@
     <Compile Include="Model\RankingEntry.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\Tournament.cs" />
-    <Page Include="Ui\ConfigurationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Ui\ModeSelectionWindow.xaml.cs">
+      <DependentUpon>ModeSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Modes\ManualModeControl.xaml.cs">
+      <DependentUpon>ManualModeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Modes\RandomPlayerModeControl.xaml.cs">
+      <DependentUpon>RandomPlayerModeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Modes\RandomTeamModeControl.xaml.cs">
+      <DependentUpon>RandomTeamModeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Settings\AddDeleteTeamSetting.cs" />
+    <Compile Include="Ui\Settings\AddGameSetting.cs" />
+    <Compile Include="Ui\Settings\ExportCSVSetting.cs" />
+    <Compile Include="Ui\Settings\Setting.cs" />
+    <Compile Include="Ui\Settings\Tournamet.cs" />
     <Page Include="Ui\ControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +125,22 @@
       <DependentUpon>GroupWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Ui\ModeSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Modes\ManualModeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Modes\RandomPlayerModeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Modes\RandomTeamModeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

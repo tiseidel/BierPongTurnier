@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace BierPongTurnier.Ui
+namespace BierPongTurnier.Ui.Modes
 {
-    /// <summary>
-    /// Interaction logic for ConfigurationWindow.xaml
-    /// </summary>
-    public partial class ConfigurationWindow : Window, INotifyPropertyChanged
+    public interface IBeerpongConfigurationCallback
+    {
+        void OnBeerPongConfiguration(int groups, int teams);
+    }
+
+    public partial class ManualModeControl : UserControl, INotifyPropertyChanged
     {
         private int _teamCount;
 
@@ -33,22 +36,21 @@ namespace BierPongTurnier.Ui
             }
         }
 
-        public App App { get; private set; }
+        public IBeerpongConfigurationCallback ConfigurationCallback { get; private set; }
 
-        public ConfigurationWindow(App app)
+        public ManualModeControl(IBeerpongConfigurationCallback configurationCallback)
         {
             this.InitializeComponent();
             this.DataContext = this;
-            this.App = app;
+            this.ConfigurationCallback = configurationCallback;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.GroupCount > 0 && this.TeamCount >= (this.GroupCount * 2))
             {
-                this.App.OnBeerPongConfiguration(this.GroupCount, this.TeamCount);
-                this.App = null;
-                this.Close();
+                this.ConfigurationCallback.OnBeerPongConfiguration(this.GroupCount, this.TeamCount);
+                this.ConfigurationCallback = null;
             }
         }
 

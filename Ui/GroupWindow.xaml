@@ -105,6 +105,8 @@
                 AlternatingRowBackground="#DDD"
                 AlternationCount="2"
                 AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
                 CanUserResizeColumns="False"
                 CanUserResizeRows="False"
                 CanUserSortColumns="False"

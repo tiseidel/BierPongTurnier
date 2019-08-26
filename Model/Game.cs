@@ -126,8 +126,10 @@ namespace BierPongTurnier.Model
 
         public Game(Team team1, Team team2) : base()
         {
-            this.Team1 = team1;
-            this.Team2 = team2;
+            this.Team1 = team1 ?? throw new ArgumentNullException(nameof(team1));
+            this.Team2 = team2 ?? throw new ArgumentNullException(nameof(team2));
+            if (Team.Equals(team1, team2)) throw new ArgumentException();
+
             this._winnerPosition = TeamPosition.NONE;
             this._team1Font = FontWeights.Normal;
             this._team2Font = FontWeights.Normal;
