@@ -12,45 +12,127 @@ namespace BierPongTurnier.Ui.Modes
 {
     public partial class RandomPlayerModeControl : UserControl, INotifyPropertyChanged
     {
-        private string _input;
+        private Random rng = new Random();
 
-        public string Input
+        private string _tournamentName;
+
+        public string TournamentName
         {
-            get => this._input;
+            get => this._tournamentName;
             set
             {
-                this._input = value;
+                this._tournamentName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        private string _playerInput;
+
+        public string PlayerInput
+        {
+            get => this._playerInput;
+            set
+            {
+                this._playerInput = value;
                 this.ParseInput(value);
                 this.OnPropertyChanged();
             }
         }
 
-        private int _count;
+        private string _groupCount;
 
-        public int Count
+        public string GroupCount
         {
-            get => this._count;
+            get => this._groupCount;
             set
             {
-                this._count = value;
+                this._groupCount = value;
                 this.OnPropertyChanged();
+            }
+        }
+
+        private int _playerCount;
+
+        public int PlayerCount
+        {
+            get => this._playerCount;
+            set
+            {
+                this._playerCount = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public Command StartCommand { get; }
+
+        public RandomPlayerModeControl()
+        {
+            this.InitializeComponent();
+
+            this.StartCommand = new Command(this.Start, this.CanStart);
+
+            this.DataContext = this;
+        }
+
+        private bool CanStart()
+        {
+            return !string.IsNullOrWhiteSpace(this.TournamentName) && this.IsGroupNumberValid() && this.PlayerCount > 3;
+        }
+
+        private bool IsGroupNumberValid()
+        {
+            try
+            {
+                var i = int.Parse(this._groupCount);
+                return i > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private void Start()
+        {
+            if (!this.CanStart())
+            {
+                return;
+            }
+            var gc = int.Parse(this._groupCount);
+
+            var list = this.Convert();
+            for (int i = 0; i < 42; i++)
+                this.Shuffle(list);
+            var groups = Creator.FromPlayers(list, gc);
+
+            new ControlWindow(new Tournament(groups) { FileName = TournamentName }).Show();
+
+            foreach (Group g in groups)
+            {
+                new GroupWindow() { DataContext = g }.Show();
             }
         }
 
         private void ParseInput(string s)
         {
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                this.PlayerCount = 0;
+                return;
+            }
+
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex("[ ]{2,}", options);
             s = regex.Replace(s, " ");
 
             s = s.Replace(",", "\n");
 
-            this.Count = s.Split('\n').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+            this.PlayerCount = s.Split('\n').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
         }
 
         private List<string> Convert()
         {
-            var s = this._input;
+            var s = this._playerInput;
 
             if (string.IsNullOrWhiteSpace(s))
             {
@@ -71,8 +153,6 @@ namespace BierPongTurnier.Ui.Modes
             return list;
         }
 
-        private Random rng = new Random();
-
         public void Shuffle(IList<string> list)
         {
             int n = list.Count;
@@ -86,33 +166,11 @@ namespace BierPongTurnier.Ui.Modes
             }
         }
 
-        public RandomPlayerModeControl()
-        {
-            this.InitializeComponent();
-
-            this.DataContext = this;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var list = this.Convert();
-            for (int i = 0; i < 42; i++)
-                this.Shuffle(list);
-            var groups = Creator.FromPlayers(list, 2);
-
-            new ControlWindow(new Tournament(groups)).Show();
-
-            foreach (Group g in groups)
-            {
-                new GroupWindow() { DataContext = g }.Show();
-            }
         }
     }
 }

@@ -7,38 +7,83 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
-            <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Row="0"
-            Padding="2"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             FontSize="14"
-            Text="Spieler durch \n getrennt eingeben." />
-        <TextBlock
+            Text="Turniername:" />
+        <TextBox
             Grid.Row="0"
             Grid.Column="1"
-            Padding="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
             FontSize="14"
-            Text="{Binding Count}" />
+            MaxLines="1"
+            Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Padding="2,8,0,0"
+            FontSize="14"
+            Text="Spielernamen:" />
         <TextBox
             Grid.Row="1"
-            Grid.ColumnSpan="2"
+            Grid.Column="1"
             Padding="2"
             AcceptsReturn="True"
+            BorderThickness="1,0,1,0"
             FontSize="14"
-            Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" />
-        <Button
+            Text="{Binding PlayerInput, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock
             Grid.Row="2"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            Text="Aktuelle Spielerzahl:" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Padding="2"
+            BorderThickness="1,0,1,0"
+            FontSize="14"
+            IsEnabled="False"
+            MaxLines="1"
+            Text="{Binding PlayerCount, Mode=OneWay}" />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Padding="2,0,8,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="14"
+            Text="Anzahl Gruppen:" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            FontSize="14"
+            MaxLines="1"
+            Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="0"
             Grid.ColumnSpan="2"
-            Padding="0,10"
             Background="CornflowerBlue"
-            Click="Button_Click"
+            Command="{Binding StartCommand}"
             Content="BierPong!"
             Foreground="White"
             TextBlock.FontFamily="Arial"
