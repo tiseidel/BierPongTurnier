@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:BierPongTurnier.Ui"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="ModeSelectionWindow"
+    Title="Turniererstellung"
     Width="800"
     Height="450"
     mc:Ignorable="d">
@@ -18,15 +18,15 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button
-                            Margin="2,5"
-                            Padding="5,10"
+                            Margin="2,1"
+                            Padding="10"
                             Background="CornflowerBlue"
                             Command="{Binding Command}"
                             Content="{Binding Title}"
                             Foreground="White"
-                            TextBlock.FontWeight="DemiBold"
                             TextBlock.FontFamily="Arial"
-                            TextBlock.FontSize="22" />
+                            TextBlock.FontSize="20"
+                            TextBlock.FontWeight="Medium" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
