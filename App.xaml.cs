@@ -1,6 +1,8 @@
 ﻿#define SKIP_CREATION_FOR_TESTING
 
 using BierPongTurnier.Ui;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace BierPongTurnier
@@ -14,7 +16,24 @@ namespace BierPongTurnier
         {
             base.OnStartup(e);
 
+            this.CheckAndCreateSaveFileDirectory();
+
             new ModeSelectionWindow().Show();
+        }
+
+        private void CheckAndCreateSaveFileDirectory()
+        {
+            try
+            {
+                if (!Directory.Exists(Constants.DIR_SAVEFILES))
+                {
+                    Directory.CreateDirectory(Constants.DIR_SAVEFILES);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

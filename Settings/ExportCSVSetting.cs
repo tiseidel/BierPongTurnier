@@ -1,9 +1,9 @@
 ﻿using BierPongTurnier.Common;
 using BierPongTurnier.Model;
 using BierPongTurnier.Persist;
-using BierPongTurnier.Ui;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Windows.Input;
 
 namespace BierPongTurnier.Settings
@@ -24,10 +24,50 @@ namespace BierPongTurnier.Settings
 
         public void ToCSV(bool isAutoSave = false)
         {
-            var groups = this.Tournament.Groups;
-            var filename = this.Tournament.FileName;
+            this.CheckAndCreateTournamentDirectory();
 
-            if (groups.Count == 0) return;
+            var filename = this.CreateFilePathWithoutType(isAutoSave);
+            var path = Constants.DIR_SAVEFILES + "\\" + this.Tournament.FileName + "\\" + filename;
+
+            try
+            {
+                string csvContent = this.CreateCSVContent();
+                System.IO.File.WriteAllText(path + ".csv", csvContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(path);
+                Console.WriteLine(ex);
+            }
+
+            try
+            {
+                string jsonContent = this.CreateJSONContent();
+                System.IO.File.WriteAllText(path + ".beer", jsonContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(path);
+                Console.WriteLine(ex);
+            }
+        }
+
+        private string CreateFilePathWithoutType(bool isAutoSave)
+        {
+            var filename = DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss");
+            if (isAutoSave) filename += "_autosave";
+
+            return filename;
+        }
+
+        private string CreateJSONContent()
+        {
+            return JsonConvert.SerializeObject(new TournamentDto().ToDto(this.Tournament));
+        }
+
+        private string CreateCSVContent()
+        {
+            var groups = this.Tournament.Groups;
 
             string empty = ";;;;";
             string divider = ";";
@@ -104,30 +144,21 @@ namespace BierPongTurnier.Settings
                 s += "\n";
             }
 
-            if (isAutoSave) filename += "_autosave";
-            filename += "_" + DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss");
-            var path = @"C:\Users\timme\Desktop\BierPongTurnier\" + filename;
+            return s;
+        }
 
+        private void CheckAndCreateTournamentDirectory()
+        {
+            var dir = Constants.DIR_SAVEFILES + "\\" + this.Tournament.FileName;
             try
             {
-                System.IO.File.WriteAllText(path + ".csv", s);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(path);
-                Console.WriteLine(ex);
-            }
-
-            var dto = new TournamentDto().ToDto(this.Tournament);
-            string output = JsonConvert.SerializeObject(dto);
-
-            try
-            {
-                System.IO.File.WriteAllText(path + ".beer", output);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(path);
                 Console.WriteLine(ex);
             }
         }
