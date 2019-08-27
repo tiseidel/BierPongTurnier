@@ -14,8 +14,10 @@ namespace BierPongTurnier.Persist
 
         public TournamentDto ToDto(Tournament tournament)
         {
-            this.Groups = new List<GroupDto>();
+            this.Id = tournament.Id;
             this.Name = tournament.Name;
+
+            this.Groups = new List<GroupDto>();
             foreach (Group g in tournament.Groups)
             {
                 this.Groups.Add(new GroupDto().ToDto(g));
