@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace BierPongTurnier.Ui
+namespace BierPongTurnier.Common
 {
     public class Command : ICommand
     {

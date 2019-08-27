@@ -1,7 +1,8 @@
-﻿using BierPongTurnier.Model;
+﻿using BierPongTurnier.Common;
+using BierPongTurnier.Model;
 using System;
 
-namespace BierPongTurnier.Ui
+namespace BierPongTurnier.Settings
 {
     public class AddGameSetting : Setting
     {
@@ -48,7 +49,7 @@ namespace BierPongTurnier.Ui
         public AddGameSetting(Tournament tournament)
         {
             this.Tournament = tournament;
-            this.AddGameCommand = new Command(this.OnExecute, () => this.SelectedGroup != null && this.SelectedTeam1 != null && this.SelectedTeam2 != null && !Team.Equals(this.SelectedTeam1, this.SelectedTeam2));
+            this.AddGameCommand = new Command(this.OnExecute, () => this.SelectedGroup != null && this.SelectedTeam1 != null && this.SelectedTeam2 != null && !Equals(this.SelectedTeam1, this.SelectedTeam2));
         }
 
         private void OnExecute()

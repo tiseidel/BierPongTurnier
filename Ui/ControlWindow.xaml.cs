@@ -1,5 +1,5 @@
 ﻿using BierPongTurnier.Model;
-using BierPongTurnier.Ui.Settings;
+using BierPongTurnier.Settings;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;

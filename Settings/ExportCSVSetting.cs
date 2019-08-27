@@ -1,10 +1,12 @@
-﻿using BierPongTurnier.Model;
+﻿using BierPongTurnier.Common;
+using BierPongTurnier.Model;
 using BierPongTurnier.Persist;
+using BierPongTurnier.Ui;
 using Newtonsoft.Json;
 using System;
 using System.Windows.Input;
 
-namespace BierPongTurnier.Ui.Settings
+namespace BierPongTurnier.Settings
 {
     public class ExportCSVSetting : Setting
     {
@@ -92,7 +94,7 @@ namespace BierPongTurnier.Ui.Settings
                     if (group.Games.Count > m)
                     {
                         var game = group.Games[m];
-                        s += $"{game.Team1.Name};{(game.Beers1 != -1 ? (game.Beers1 + "") : "")};{(game.Beers2 != -1 ? (game.Beers2 + "") : "")};{game.Team2.Name};" + divider;
+                        s += $"{game.Team1.Name};{(game.Beers1 != -1 ? game.Beers1 + "" : "")};{(game.Beers2 != -1 ? game.Beers2 + "" : "")};{game.Team2.Name};" + divider;
                     }
                     else
                     {

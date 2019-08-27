@@ -79,6 +79,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Common\Command.cs" />
     <Compile Include="Creator.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="Persist\GroupDto.cs" />
     <Compile Include="Persist\TeamDto.cs" />
     <Compile Include="Persist\TournamentDto.cs" />
-    <Compile Include="Ui\Command.cs" />
+    <Compile Include="Settings\ExportCSVSetting.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Ui\ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
@@ -115,11 +116,9 @@
     <Compile Include="Ui\Modes\RandomTeamModeControl.xaml.cs">
       <DependentUpon>RandomTeamModeControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ui\Settings\AddDeleteTeamSetting.cs" />
-    <Compile Include="Ui\Settings\AddGameSetting.cs" />
-    <Compile Include="Ui\Settings\ExportCSVSetting.cs" />
-    <Compile Include="Ui\Settings\Setting.cs" />
-    <Compile Include="Ui\Settings\Tournamet.cs" />
+    <Compile Include="Settings\AddDeleteTeamSetting.cs" />
+    <Compile Include="Settings\AddGameSetting.cs" />
+    <Compile Include="Settings\Setting.cs" />
     <Page Include="Ui\ControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

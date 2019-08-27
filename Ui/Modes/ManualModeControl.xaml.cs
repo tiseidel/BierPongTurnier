@@ -1,4 +1,5 @@
-﻿using BierPongTurnier.Model;
+﻿using BierPongTurnier.Common;
+using BierPongTurnier.Model;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;

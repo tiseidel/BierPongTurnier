@@ -1,8 +1,10 @@
-﻿using BierPongTurnier.Model;
+﻿using BierPongTurnier.Common;
+using BierPongTurnier.Model;
+using BierPongTurnier.Ui;
 using System.Linq;
 using System.Windows;
 
-namespace BierPongTurnier.Ui.Settings
+namespace BierPongTurnier.Settings
 {
     public class AddDeleteTeamSetting : Setting
     {
@@ -89,7 +91,7 @@ namespace BierPongTurnier.Ui.Settings
 
         private void DeleteTeam()
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Soll das Team wirklich gelöscht werden?", "Team löschen?", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = MessageBox.Show("Soll das Team wirklich gelöscht werden?", "Team löschen?", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 Team t = this.SelectedGroup.Teams.First(o => o.Name.Equals(this._name));

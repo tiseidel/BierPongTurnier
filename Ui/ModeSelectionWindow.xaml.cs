@@ -1,4 +1,5 @@
-﻿using BierPongTurnier.Ui.Modes;
+﻿using BierPongTurnier.Common;
+using BierPongTurnier.Ui.Modes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
