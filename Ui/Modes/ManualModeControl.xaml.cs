@@ -88,7 +88,7 @@ namespace BierPongTurnier.Ui.Modes
 
             var groups = Creator.FromCount(tc, gc);
 
-            new ControlWindow(new Tournament(groups) { FileName = TournamentName }).Show();
+            new ControlWindow(new Tournament(groups) { Name = TournamentName }).Show();
 
             foreach (Group g in groups)
             {

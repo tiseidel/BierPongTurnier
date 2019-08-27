@@ -7,7 +7,7 @@ namespace BierPongTurnier.Model
     {
         public ObservableCollection<Group> Groups { get; }
 
-        public string FileName { get; internal set; }
+        public string Name { get; internal set; }
 
         public Tournament(List<Group> groups) : base()
         {

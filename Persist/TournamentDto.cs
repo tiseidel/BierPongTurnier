@@ -15,7 +15,7 @@ namespace BierPongTurnier.Persist
         public TournamentDto ToDto(Tournament tournament)
         {
             this.Groups = new List<GroupDto>();
-            this.Name = tournament.FileName;
+            this.Name = tournament.Name;
             foreach (Group g in tournament.Groups)
             {
                 this.Groups.Add(new GroupDto().ToDto(g));
@@ -32,7 +32,7 @@ namespace BierPongTurnier.Persist
                 list.Add(g.Convert());
             }
 
-            return new Tournament(list) { Id = this.Id, FileName = this.Name };
+            return new Tournament(list) { Id = this.Id, Name = this.Name };
         }
     }
 }

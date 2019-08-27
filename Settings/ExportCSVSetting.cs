@@ -27,7 +27,7 @@ namespace BierPongTurnier.Settings
             this.CheckAndCreateTournamentDirectory();
 
             var filename = this.CreateFilePathWithoutType(isAutoSave);
-            var path = Constants.DIR_SAVEFILES + "\\" + this.Tournament.FileName + "\\" + filename;
+            var path = Constants.DIR_SAVEFILES + "\\" + this.Tournament.Name + "\\" + filename;
 
             try
             {
@@ -149,7 +149,7 @@ namespace BierPongTurnier.Settings
 
         private void CheckAndCreateTournamentDirectory()
         {
-            var dir = Constants.DIR_SAVEFILES + "\\" + this.Tournament.FileName;
+            var dir = Constants.DIR_SAVEFILES + "\\" + this.Tournament.Name;
             try
             {
                 if (!Directory.Exists(dir))
