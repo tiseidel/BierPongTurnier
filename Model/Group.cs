@@ -1,5 +1,4 @@
 ﻿using BierPongTurnier.Common;
-using System;
 using System.Collections.ObjectModel;
 
 namespace BierPongTurnier.Model
@@ -53,31 +52,6 @@ namespace BierPongTurnier.Model
                     this.Ranking.Entries.Remove(r);
                 }
             }
-        }
-
-        public string ToCSV()
-        {
-            string s = "Teams; ; ; ; \n" +
-                "; ; ; ; \n";
-            foreach (Team t in Teams)
-            {
-                s += t.Name + "; ; ; ;\n";
-            }
-            s += "; ; ; ; \n";
-            s += "Spiele; ; ; ; \n";
-            s += "; ; ; ; \n";
-            foreach (Game g in Games)
-            {
-                s += $"{g.Team1.Name};{g.Beers1};{g.Beers1};{g.Team2.Name};\n";
-            }
-
-            try
-            {
-                System.IO.File.WriteAllText(@"C:\Users\timme\Desktop\turnier.csv", s);
-            }
-            catch (Exception) { }
-
-            return s;
         }
     }
 }
