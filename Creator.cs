@@ -65,19 +65,6 @@ namespace BierPongTurnier
                 }
             }
 
-            int rest = playerCount - x * 2;
-            grNr = x % groupCount;
-            switch (rest)
-            {
-                case 2:
-                    groups[grNr].Teams.Add(new Team() { Name = players[x * 2] + " + " + players[x * 2 + 1] });
-                    break;
-
-                case 3:
-                    groups[grNr].Teams.Add(new Team() { Name = players[x * 2] + " + " + players[x * 2 + 1] + " + " + players[x * 2 + 2] });
-                    break;
-            }
-
             foreach (Group group in groups)
             {
                 Creator.CreateRoundRobin(group);
