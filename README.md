@@ -11,6 +11,6 @@ Funktionen:
 
 Unterstützt:
   - Gruppenanzahl: Unbeschränkt
-  - Gruppengröße: 2-5 Teams pro Gruppe
+  - Gruppengröße: 2-6 Teams pro Gruppe
   - Teamgröße: Unbeschränkt/Bei zuäflliger Aufteilung der Spieler: 2
   - Spieleranzahl: Unbeschränkt

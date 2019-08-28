@@ -169,6 +169,32 @@ namespace BierPongTurnier
                         }
                     }
                     break;
+                case 6:
+                    {
+                        int[,] m =
+                        {
+                                {1, 2},
+                                {3, 4},
+                                {5, 6},
+                                {1, 3},
+                                {2, 5},
+                                {6, 4},
+                                {3, 5},
+                                {1, 4},
+                                {2, 6},
+                                {1, 5},
+                                {6, 3},
+                                {2, 4},
+                                {1, 6},
+                                {5, 4},
+                                {2, 3}
+                        };
+                        for (int j = 0; j < m.Length / 2; j++)
+                        {
+                            group.Games.Add(new Game(group.Teams[m[j, left] - 1], group.Teams[m[j, right] - 1]));
+                        }
+                    }
+                    break;
             }
         }
     }
