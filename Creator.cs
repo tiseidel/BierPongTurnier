@@ -119,7 +119,7 @@ namespace BierPongTurnier
                     {
                         int[,] m =
                         {
-                                {1, 2},
+                                {1, 2}
                         };
                         for (int j = 0; j < m.Length / 2; j++)
                         {
