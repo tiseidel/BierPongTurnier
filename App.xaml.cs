@@ -1,5 +1,6 @@
 ﻿#define SKIP_CREATION_FOR_TESTING
 
+using BierPongTurnier.Settings;
 using BierPongTurnier.Ui;
 using System;
 using System.IO;
@@ -16,9 +17,12 @@ namespace BierPongTurnier
         {
             base.OnStartup(e);
 
+            /*
             this.CheckAndCreateSaveFileDirectory();
 
             new ModeSelectionWindow().Show();
+            */
+            new ExportToKnockoutStage().Test();
         }
 
         private void CheckAndCreateSaveFileDirectory()

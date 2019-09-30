@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System;
+using System.Runtime.InteropServices;
 
 namespace BierPongTurnier.Settings
 {
@@ -8,11 +9,13 @@ namespace BierPongTurnier.Settings
         public void Test()
         {
             Application excel = new Application();
-            Workbook sheet = excel.Workbooks.Open(@"C:\Users\timme\Desktop\master-knockout-plan.xlsx", ReadOnly:false);
+            Workbooks workbooks = excel.Workbooks;
+            Workbook sheet = workbooks.Open(@"C:\Users\timme\Desktop\master-knockout-plan.xlsx", ReadOnly: false);
             Worksheet ko = excel.ActiveSheet as Worksheet;
 
             var range = ko.UsedRange;
             Console.WriteLine(range.Value as string);
+            Console.WriteLine("Testing...");
             /*
             for (int y = 1; y <= range.Rows.Count; y++)
             {
@@ -29,8 +32,15 @@ namespace BierPongTurnier.Settings
                 }
             }*/
 
+            Marshal.FinalReleaseComObject(range);
+            Marshal.FinalReleaseComObject(ko);
+
             sheet.Close(true, Type.Missing, Type.Missing);
+            Marshal.FinalReleaseComObject(sheet);
+            Marshal.FinalReleaseComObject(workbooks);
+
             excel.Quit();
+            Marshal.FinalReleaseComObject(excel);
         }
     }
 }
