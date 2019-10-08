@@ -2,26 +2,14 @@
     x:Class="BierPongTurnier.Ui.Modes.ImportModeControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:BierPongTurnier.Ui.Modes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    xmlns:local="clr-namespace:BierPongTurnier.Ui.Modes">
     <Grid>
         <Button
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Command="{Binding StartCommand}">
-            <StackPanel Orientation="Horizontal">
-                <Image
-                    Width="24"
-                    Height="24"
-                    Source="/Assets/FileDestination_16x.png" />
-                <TextBlock
-                    Padding="8"
-                    Background="CornflowerBlue"
-                    FontSize="18"
-                    Foreground="White"
-                    Text="Datei auswählen" />
-            </StackPanel>
-        </Button>
+            Height="40"
+            VerticalAlignment="Bottom"
+            Background="{StaticResource ColorPrimaryBrush}"
+            Command="{Binding StartCommand}"
+            Content="Datei auswählen"
+            Style="{StaticResource BierPongStartButton}" />
     </Grid>
 </UserControl>

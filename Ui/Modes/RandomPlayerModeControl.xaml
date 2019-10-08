@@ -2,92 +2,52 @@
     x:Class="BierPongTurnier.Ui.Modes.RandomPlayerModeControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:BierPongTurnier.Ui.Modes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    xmlns:local="clr-namespace:BierPongTurnier.Ui.Modes">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Padding="2,0,8,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="Turniername:" />
-        <TextBox
-            Grid.Row="0"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Stretch"
-            FontSize="14"
-            MaxLines="1"
-            Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="0"
-            Padding="2,8,0,0"
-            FontSize="14"
-            Text="Spielernamen:" />
-        <TextBox
-            Grid.Row="1"
-            Grid.Column="1"
-            Padding="2"
-            AcceptsReturn="True"
-            BorderThickness="1,0,1,0"
-            FontSize="14"
-            Text="{Binding PlayerInput, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="0"
-            Padding="2,0,8,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="Aktuelle Spielerzahl:" />
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Padding="2"
-            BorderThickness="1,0,1,0"
-            FontSize="14"
-            IsEnabled="False"
-            MaxLines="1"
-            Text="{Binding PlayerCount, Mode=OneWay}" />
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Style="{StaticResource InputDescription}" Text="Turniername" />
+            <TextBox Style="{StaticResource SingleLineInput}" Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Style="{StaticResource InputDescription}" Text="Anzahl Gruppen" />
+            <TextBox Style="{StaticResource SingleLineInput}" Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock Style="{StaticResource InputDescription}" Text="Aktuelle Spielerzahl" />
+            <TextBox
+                FontSize="22"
+                FontWeight="SemiBold"
+                Foreground="{StaticResource ColorPrimaryDarkBrush}"
+                IsEnabled="False"
+                Style="{StaticResource SingleLineInput}"
+                Text="{Binding PlayerCount, Mode=OneWay}" />
+        </StackPanel>
         <TextBlock
             Grid.Row="3"
-            Grid.Column="0"
-            Padding="2,0,8,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontSize="14"
-            Text="Anzahl Gruppen:" />
+            Style="{StaticResource InputDescription}"
+            Text="Spielernamen" />
         <TextBox
-            Grid.Row="3"
-            Grid.Column="1"
-            FontSize="14"
-            MaxLines="1"
-            Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
-        <Button
             Grid.Row="4"
+            Margin="0,0,0,8"
+            Padding="2"
+            VerticalAlignment="Stretch"
+            VerticalContentAlignment="Top"
+            AcceptsReturn="True"
+            FontSize="14"
+            Text="{Binding PlayerInput, UpdateSourceTrigger=PropertyChanged}"
+            VerticalScrollBarVisibility="Auto" />
+        <Button
+            Grid.Row="5"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Background="CornflowerBlue"
             Command="{Binding StartCommand}"
-            Content="BierPong!"
-            Foreground="White"
-            TextBlock.FontFamily="Arial"
-            TextBlock.FontSize="22"
-            TextBlock.FontWeight="DemiBold" />
+            Style="{StaticResource BierPongStartButton}" />
     </Grid>
 </UserControl>

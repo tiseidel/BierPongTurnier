@@ -5,5 +5,41 @@
     xmlns:local="clr-namespace:BierPongTurnier">
     <Application.Resources>
         <Color x:Key="ColorText">#1a237e</Color>
+
+        <Color x:Key="ColorPrimary">#0288d1</Color>
+        <Color x:Key="ColorPrimaryDark">#005b9f</Color>
+        <Color x:Key="ColorPrimaryLight">#5eb8ff</Color>
+        <SolidColorBrush x:Key="ColorPrimaryBrush">#0288d1</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorPrimaryDarkBrush">#005b9f</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorPrimaryLightBrush">#5eb8ff</SolidColorBrush>
+
+        <Color x:Key="ColorWhite">#ffffff</Color>
+
+        <Style x:Key="InputDescription" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Padding" Value="2,0,8,2" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="SingleLineInput" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="MaxLines" Value="1" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Padding" Value="2,0,0,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="BierPongStartButton" TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{StaticResource ColorPrimaryBrush}" />
+            <Setter Property="Content" Value="BierPong!" />
+            <Setter Property="TextBlock.FontFamily" Value="Arial" />
+            <Setter Property="TextBlock.FontSize" Value="22" />
+            <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
+        </Style>
     </Application.Resources>
 </Application>
