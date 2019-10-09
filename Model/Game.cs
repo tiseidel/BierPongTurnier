@@ -3,13 +3,6 @@ using System.Windows;
 
 namespace BierPongTurnier.Model
 {
-    public enum TeamPosition
-    {
-        FIRST,
-        SECOND,
-        NONE
-    }
-
     public class Game : BPTObject
     {
         public static readonly int BEERS_NOT_SET = -1;
@@ -19,10 +12,6 @@ namespace BierPongTurnier.Model
         private string _beers2Input;
 
         private TeamPosition _winnerPosition;
-
-        private FontWeight _team1Font;
-
-        private FontWeight _team2Font;
 
         public Team Team1 { get; }
 
@@ -104,26 +93,6 @@ namespace BierPongTurnier.Model
             }
         }
 
-        public FontWeight Team1Font
-        {
-            get => this._team1Font;
-            set
-            {
-                this._team1Font = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public FontWeight Team2Font
-        {
-            get => this._team2Font;
-            set
-            {
-                this._team2Font = value;
-                this.OnPropertyChanged();
-            }
-        }
-
         public Game(Team team1, Team team2) : base()
         {
             this.Team1 = team1 ?? throw new ArgumentNullException(nameof(team1));
@@ -131,8 +100,6 @@ namespace BierPongTurnier.Model
             if (Team.Equals(team1, team2)) throw new ArgumentException();
 
             this._winnerPosition = TeamPosition.NONE;
-            this._team1Font = FontWeights.Normal;
-            this._team2Font = FontWeights.Normal;
         }
 
         public bool IsValid => this.Beers1 != BEERS_NOT_SET && this.Beers2 != BEERS_NOT_SET;
@@ -142,7 +109,6 @@ namespace BierPongTurnier.Model
             if (!this.IsValid)
             {
                 this.WinnerPosition = TeamPosition.NONE;
-                this.UpdateFonts();
                 return;
             }
 
@@ -158,13 +124,6 @@ namespace BierPongTurnier.Model
             {
                 this.WinnerPosition = TeamPosition.NONE;
             }
-            this.UpdateFonts();
-        }
-
-        public void UpdateFonts()
-        {
-            this.Team1Font = this.WinnerPosition == TeamPosition.FIRST ? FontWeights.Bold : FontWeights.Normal;
-            this.Team2Font = this.WinnerPosition == TeamPosition.SECOND ? FontWeights.Bold : FontWeights.Normal;
         }
 
         public GameResult GetResult(Team team)
