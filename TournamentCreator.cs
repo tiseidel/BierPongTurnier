@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BierPongTurnier
 {
-    public class Creator
+    public class TournamentCreator
     {
         public static List<Group> FromCount(int teamCount, int groupCount)
         {
@@ -22,7 +22,7 @@ namespace BierPongTurnier
 
             foreach (Group group in groups)
             {
-                Creator.CreateRoundRobin(group);
+                TournamentCreator.CreateRoundRobin(group);
             }
             return groups;
         }
@@ -67,7 +67,7 @@ namespace BierPongTurnier
 
             foreach (Group group in groups)
             {
-                Creator.CreateRoundRobin(group);
+                TournamentCreator.CreateRoundRobin(group);
             }
 
             return groups;
@@ -91,7 +91,7 @@ namespace BierPongTurnier
 
             foreach (Group group in groups)
             {
-                Creator.CreateRoundRobin(group);
+                TournamentCreator.CreateRoundRobin(group);
             }
             return groups;
         }

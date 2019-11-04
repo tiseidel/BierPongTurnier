@@ -98,7 +98,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Common\Command.cs" />
-    <Compile Include="Creator.cs" />
+    <Compile Include="TournamentCreator.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
     <Compile Include="Common\CascadingObservableCollection.cs" />
@@ -202,9 +202,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\FileDestination_16x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
@@ -215,6 +212,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

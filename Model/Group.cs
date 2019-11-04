@@ -1,17 +1,18 @@
 ﻿using BierPongTurnier.Common;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace BierPongTurnier.Model
 {
     public class Group : BPTObject
     {
+        public string Name { get; set; }
+
         public ObservableCollection<Team> Teams { get; }
 
         public CascadingObservableCollection<Game> Games { get; }
 
         public RankingController Ranking { get; }
-
-        public string Name { get; set; }
 
         public Group() : base()
         {
@@ -19,16 +20,11 @@ namespace BierPongTurnier.Model
             this.Games = new CascadingObservableCollection<Game>();
             this.Ranking = new RankingController(this);
 
-            this.Teams.CollectionChanged += this.Teams_CollectionChanged;
-            this.Games.CollectionChanged += this.Games_CollectionChanged;
+            this.Teams.CollectionChanged += (o, e) => this.Ranking.Calculate();
+            this.Games.CollectionChanged += this.Teams_CollectionChanged;
         }
 
-        private void Games_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.Ranking.Calculate();
-        }
-
-        private void Teams_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Teams_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
@@ -37,6 +33,7 @@ namespace BierPongTurnier.Model
                     this.Ranking.Entries.Add(new RankingEntry(item));
                 }
             }
+
             if (e.OldItems != null)
             {
                 foreach (Team item in e.OldItems)

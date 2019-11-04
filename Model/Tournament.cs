@@ -5,9 +5,9 @@ namespace BierPongTurnier.Model
 {
     public class Tournament : BPTObject
     {
-        public ObservableCollection<Group> Groups { get; }
+        public string Name { get; set; }
 
-        public string Name { get; internal set; }
+        public ObservableCollection<Group> Groups { get; }
 
         public Tournament(List<Group> groups) : base()
         {

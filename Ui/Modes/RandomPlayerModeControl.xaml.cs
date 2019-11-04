@@ -99,7 +99,7 @@ namespace BierPongTurnier.Ui.Modes
             var list = this.Convert();
             for (int i = 0; i < 42; i++)
                 Extensions.Shuffle(list, this.random);
-            var groups = Creator.FromPlayers(list, gc);
+            var groups = TournamentCreator.FromPlayers(list, gc);
 
             new ControlWindow(new Tournament(groups) { Name = TournamentName }).Show();
 

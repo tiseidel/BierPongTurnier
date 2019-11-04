@@ -86,7 +86,7 @@ namespace BierPongTurnier.Ui.Modes
             int gc = int.Parse(this._groupCount);
             int tc = int.Parse(this._teamCount);
 
-            var groups = Creator.FromCount(tc, gc);
+            var groups = TournamentCreator.FromCount(tc, gc);
 
             new ControlWindow(new Tournament(groups) { Name = TournamentName }).Show();
 
