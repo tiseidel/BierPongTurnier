@@ -20,7 +20,22 @@ namespace BierPongTurnier.Ui
     {
         private UserControl _ui;
 
+        private IStartTournamentCallback _startTourmanentCallback;
+
         public ObservableCollection<Mode> Modes { get; set; }
+
+        public IStartTournamentCallback StartTourmanentCallback
+        {
+            get => this._startTourmanentCallback;
+            set
+            {
+                this._startTourmanentCallback = value;
+                if (this._ui is ITournamentStartMode tsm)
+                {
+                    tsm.StartTournamentCallback = value;
+                }
+            }
+        }
 
         public UserControl UI
         {
@@ -49,22 +64,34 @@ namespace BierPongTurnier.Ui
 
         public void SelectRandomPlayer()
         {
-            this.UI = new RandomPlayerModeControl();
+            this.UI = new RandomPlayerModeControl()
+            {
+                StartTournamentCallback = this.StartTourmanentCallback
+            };
         }
 
         public void SelectRandomTeam()
         {
-            this.UI = new RandomTeamModeControl();
+            this.UI = new RandomTeamModeControl()
+            {
+                StartTournamentCallback = this.StartTourmanentCallback
+            };
         }
 
         public void SelectManualMode()
         {
-            this.UI = new ManualModeControl();
+            this.UI = new ManualModeControl()
+            {
+                StartTournamentCallback = this.StartTourmanentCallback
+            };
         }
 
         public void SelectImport()
         {
-            this.UI = new ImportModeControl();
+            this.UI = new ImportModeControl()
+            {
+                StartTournamentCallback = this.StartTourmanentCallback
+            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

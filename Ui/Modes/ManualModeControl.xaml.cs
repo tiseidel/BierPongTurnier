@@ -12,7 +12,7 @@ namespace BierPongTurnier.Ui.Modes
         void OnBeerPongConfiguration(int groups, int teams);
     }
 
-    public partial class ManualModeControl : UserControl, INotifyPropertyChanged
+    public partial class ManualModeControl : UserControl, INotifyPropertyChanged, ITournamentStartMode
     {
         private string _teamCount;
 
@@ -49,6 +49,8 @@ namespace BierPongTurnier.Ui.Modes
                 this.OnPropertyChanged();
             }
         }
+
+        public IStartTournamentCallback StartTournamentCallback { get; set; }
 
         public Command StartCommand { get; }
 
@@ -88,12 +90,10 @@ namespace BierPongTurnier.Ui.Modes
 
             var groups = TournamentCreator.FromCount(tc, gc);
 
-            new ControlWindow(new Tournament(groups) { Name = TournamentName }).Show();
-
-            foreach (Group g in groups)
+            this?.StartTournamentCallback.Start(new Tournament(groups)
             {
-                new GroupWindow() { DataContext = g }.Show();
-            }
+                Name = this.TournamentName
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

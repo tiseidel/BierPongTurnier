@@ -1,5 +1,6 @@
 ﻿using BierPongTurnier.Common;
 using BierPongTurnier.Model;
+using System;
 using System.Windows;
 
 namespace BierPongTurnier.Ui
@@ -21,6 +22,14 @@ namespace BierPongTurnier.Ui
             {
                 this._beers1Input = value;
                 this.OnPropertyChanged();
+                try
+                {
+                    this.Game.Beers1 = int.Parse(value);
+                }
+                catch (Exception)
+                {
+                    this.Game.Beers1 = Game.BEERS_NOT_SET;
+                }
             }
         }
 
@@ -31,6 +40,14 @@ namespace BierPongTurnier.Ui
             {
                 this._beers2Input = value;
                 this.OnPropertyChanged();
+                try
+                {
+                    this.Game.Beers2 = int.Parse(value);
+                }
+                catch (Exception)
+                {
+                    this.Game.Beers2 = Game.BEERS_NOT_SET;
+                }
             }
         }
 
@@ -86,7 +103,7 @@ namespace BierPongTurnier.Ui
 
             this._team1Font = FontWeights.Normal;
             this._team2Font = FontWeights.Normal;
-            this.PropertyChanged += this.Game_PropertyChanged;
+            this.Game.PropertyChanged += this.Game_PropertyChanged;
         }
 
         private void Game_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

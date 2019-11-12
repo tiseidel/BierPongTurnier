@@ -1,5 +1,4 @@
 ﻿using BierPongTurnier.Common;
-using BierPongTurnier.Model;
 using BierPongTurnier.Persist;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -8,8 +7,10 @@ using System.Windows.Controls;
 
 namespace BierPongTurnier.Ui.Modes
 {
-    public partial class ImportModeControl : UserControl
+    public partial class ImportModeControl : UserControl, ITournamentStartMode
     {
+        public IStartTournamentCallback StartTournamentCallback { get; set; }
+
         public Command StartCommand { get; }
 
         public ImportModeControl()
@@ -33,13 +34,7 @@ namespace BierPongTurnier.Ui.Modes
         private void ParseFile(string file)
         {
             var tournament = JsonConvert.DeserializeObject<TournamentDto>(file).Convert();
-
-            new ControlWindow(tournament).Show();
-
-            foreach (Group g in tournament.Groups)
-            {
-                new GroupWindow() { DataContext = g }.Show();
-            }
+            this?.StartTournamentCallback.Start(tournament);
         }
     }
 }

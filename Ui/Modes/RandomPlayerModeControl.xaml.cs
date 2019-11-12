@@ -11,7 +11,7 @@ using Group = BierPongTurnier.Model.Group;
 
 namespace BierPongTurnier.Ui.Modes
 {
-    public partial class RandomPlayerModeControl : UserControl, INotifyPropertyChanged
+    public partial class RandomPlayerModeControl : UserControl, INotifyPropertyChanged, ITournamentStartMode
     {
         private Random random = new Random();
 
@@ -64,6 +64,8 @@ namespace BierPongTurnier.Ui.Modes
             }
         }
 
+        public IStartTournamentCallback StartTournamentCallback { get; set; }
+
         public Command StartCommand { get; }
 
         public RandomPlayerModeControl()
@@ -101,12 +103,10 @@ namespace BierPongTurnier.Ui.Modes
                 Extensions.Shuffle(list, this.random);
             var groups = TournamentCreator.FromPlayers(list, gc);
 
-            new ControlWindow(new Tournament(groups) { Name = TournamentName }).Show();
-
-            foreach (Group g in groups)
+            this?.StartTournamentCallback.Start(new Tournament(groups)
             {
-                new GroupWindow() { DataContext = g }.Show();
-            }
+                Name = this.TournamentName
+            });
         }
 
         private void ParseInput(string s)

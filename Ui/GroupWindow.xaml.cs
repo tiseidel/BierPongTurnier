@@ -4,14 +4,16 @@ using System.Windows.Input;
 
 namespace BierPongTurnier.Ui
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class GroupWindow : Window
     {
-        public GroupWindow()
+        public GroupViewModel ViewModel { get; }
+
+        public GroupWindow(GroupViewModel viewModel)
         {
             this.InitializeComponent();
+
+            this.ViewModel = viewModel;
+            this.DataContext = viewModel;
         }
 
         private int closeCount = 0;

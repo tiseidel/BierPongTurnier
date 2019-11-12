@@ -1,7 +1,7 @@
 ﻿using BierPongTurnier.Common;
-using BierPongTurnier.Ui;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace BierPongTurnier.Model
 {
@@ -11,27 +11,41 @@ namespace BierPongTurnier.Model
 
         public ObservableCollection<Team> Teams { get; }
 
-        public CascadingObservableCollection<GameViewModel> Games { get; }
+        public CascadingObservableCollection<Game> Games { get; }
 
         public RankingController Ranking { get; }
 
         public Group() : base()
         {
             this.Teams = new ObservableCollection<Team>();
-            this.Games = new CascadingObservableCollection<GameViewModel>();
+            this.Games = new CascadingObservableCollection<Game>();
             this.Ranking = new RankingController(this);
 
+            this.Games.CollectionChanged += (s, e) => this.Update();
             this.Teams.CollectionChanged += this.Teams_CollectionChanged;
-            this.Games.CollectionChanged += (o, e) => this.Ranking.Calculate();
+        }
+
+        public void Update()
+        {
+            this.Ranking.Calculate();
         }
 
         private void Teams_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                this.Ranking.Entries.Clear();
+                this.Update();
+                return;
+            }
+
+            var changed = false;
             if (e.NewItems != null)
             {
                 foreach (Team item in e.NewItems)
                 {
                     this.Ranking.Entries.Add(new RankingEntry(item));
+                    changed = true;
                 }
             }
 
@@ -39,16 +53,14 @@ namespace BierPongTurnier.Model
             {
                 foreach (Team item in e.OldItems)
                 {
-                    RankingEntry r = null;
-                    foreach (RankingEntry entry in this.Ranking.Entries)
-                    {
-                        if (entry.Team.Equals(item))
-                        {
-                            r = entry;
-                        }
-                    }
-                    this.Ranking.Entries.Remove(r);
+                    this.Ranking.Entries.Remove(this.Ranking.Entries.First(r => r.Team.Equals(item)));
+                    changed = true;
                 }
+            }
+
+            if (changed)
+            {
+                this.Update();
             }
         }
     }
