@@ -103,6 +103,10 @@ namespace BierPongTurnier.Ui
 
             this._team1Font = FontWeights.Normal;
             this._team2Font = FontWeights.Normal;
+
+            this._beers1Input = game.Beers1 == Game.BEERS_NOT_SET ? "" : game.Beers1.ToString();
+            this._beers2Input = game.Beers2 == Game.BEERS_NOT_SET ? "" : game.Beers2.ToString();
+
             this.Game.PropertyChanged += this.Game_PropertyChanged;
         }
 
