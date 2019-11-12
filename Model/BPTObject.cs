@@ -13,6 +13,11 @@ namespace BierPongTurnier.Model
             this.Id = Guid.NewGuid();
         }
 
+        public BPTObject(Guid id)
+        {
+            this.Id = id;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is BPTObject @object &&

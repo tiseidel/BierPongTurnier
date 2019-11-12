@@ -1,126 +1,58 @@
 ﻿using System;
-using System.Windows;
+using System.ComponentModel;
 
 namespace BierPongTurnier.Model
 {
-    public enum TeamPosition
+    public interface IGame : INotifyPropertyChanged
     {
-        FIRST,
-        SECOND,
-        NONE
+        Team Team1 { get; }
+
+        Team Team2 { get; }
+
+        int Beers1 { get; set; }
+
+        int Beers2 { get; set; }
+
+        TeamPosition WinnerPosition { get; }
+
+        GameResult ResultForTeam(Team team);
     }
 
-    public class Game : BPTObject
+    public class Game : BPTObject, IGame
     {
         public static readonly int BEERS_NOT_SET = -1;
 
-        private string _beers1Input;
+        private int _beers1;
 
-        private string _beers2Input;
-
-        private TeamPosition _winnerPosition;
-
-        private FontWeight _team1Font;
-
-        private FontWeight _team2Font;
+        private int _beers2;
 
         public Team Team1 { get; }
 
         public Team Team2 { get; }
 
-        public string Beers1Input
-        {
-            get => this._beers1Input;
-            set
-            {
-                this._beers1Input = value;
-                this.OnPropertyChanged();
-                this.CalculateWinnerPosition();
-            }
-        }
-
-        public string Beers2Input
-        {
-            get => this._beers2Input;
-            set
-            {
-                this._beers2Input = value;
-                this.OnPropertyChanged();
-                this.CalculateWinnerPosition();
-            }
-        }
-
         public int Beers1
         {
-            get
+            get => this._beers1;
+            set
             {
-                if (string.IsNullOrWhiteSpace(this._beers1Input))
+                if (this._beers1 != value)
                 {
-                    return BEERS_NOT_SET;
-                }
-                else
-                {
-                    try
-                    {
-                        return int.Parse(this._beers1Input);
-                    }
-                    catch (Exception)
-                    {
-                        return BEERS_NOT_SET;
-                    }
+                    this._beers1 = value;
+                    this.OnPropertyChanged();
                 }
             }
         }
 
         public int Beers2
         {
-            get
+            get => this._beers2;
+            set
             {
-                if (string.IsNullOrWhiteSpace(this._beers2Input))
+                if (this._beers2 != value)
                 {
-                    return BEERS_NOT_SET;
+                    this._beers2 = value;
+                    this.OnPropertyChanged();
                 }
-                else
-                {
-                    try
-                    {
-                        return int.Parse(this._beers2Input);
-                    }
-                    catch (Exception)
-                    {
-                        return BEERS_NOT_SET;
-                    }
-                }
-            }
-        }
-
-        public TeamPosition WinnerPosition
-        {
-            get => this._winnerPosition;
-            set
-            {
-                this._winnerPosition = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public FontWeight Team1Font
-        {
-            get => this._team1Font;
-            set
-            {
-                this._team1Font = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public FontWeight Team2Font
-        {
-            get => this._team2Font;
-            set
-            {
-                this._team2Font = value;
-                this.OnPropertyChanged();
             }
         }
 
@@ -130,44 +62,47 @@ namespace BierPongTurnier.Model
             this.Team2 = team2 ?? throw new ArgumentNullException(nameof(team2));
             if (Team.Equals(team1, team2)) throw new ArgumentException();
 
-            this._winnerPosition = TeamPosition.NONE;
-            this._team1Font = FontWeights.Normal;
-            this._team2Font = FontWeights.Normal;
+            this._beers1 = Game.BEERS_NOT_SET;
+            this._beers2 = Game.BEERS_NOT_SET;
+        }
+
+        public Game(Guid id, Team team1, Team team2, int beers1, int beers2) : base(id)
+        {
+            this.Team1 = team1 ?? throw new ArgumentNullException(nameof(team1));
+            this.Team2 = team2 ?? throw new ArgumentNullException(nameof(team2));
+            if (Team.Equals(team1, team2)) throw new ArgumentException();
+
+            this._beers1 = beers1;
+            this._beers2 = beers2;
         }
 
         public bool IsValid => this.Beers1 != BEERS_NOT_SET && this.Beers2 != BEERS_NOT_SET;
 
-        public void CalculateWinnerPosition()
+        public TeamPosition WinnerPosition
         {
-            if (!this.IsValid)
+            get
             {
-                this.WinnerPosition = TeamPosition.NONE;
-                this.UpdateFonts();
-                return;
-            }
+                if (!this.IsValid)
+                {
+                    return TeamPosition.NONE;
+                }
 
-            if (this.Beers1 < this.Beers2)
-            {
-                this.WinnerPosition = TeamPosition.FIRST;
+                if (this.Beers1 < this.Beers2)
+                {
+                    return TeamPosition.FIRST;
+                }
+                else if (this.Beers2 < this.Beers1)
+                {
+                    return TeamPosition.SECOND;
+                }
+                else
+                {
+                    return TeamPosition.NONE;
+                }
             }
-            else if (this.Beers2 < this.Beers1)
-            {
-                this.WinnerPosition = TeamPosition.SECOND;
-            }
-            else
-            {
-                this.WinnerPosition = TeamPosition.NONE;
-            }
-            this.UpdateFonts();
         }
 
-        public void UpdateFonts()
-        {
-            this.Team1Font = this.WinnerPosition == TeamPosition.FIRST ? FontWeights.Bold : FontWeights.Normal;
-            this.Team2Font = this.WinnerPosition == TeamPosition.SECOND ? FontWeights.Bold : FontWeights.Normal;
-        }
-
-        public GameResult GetResult(Team team)
+        public GameResult ResultForTeam(Team team)
         {
             if (!this.IsValid)
             {

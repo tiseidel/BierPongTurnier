@@ -37,7 +37,7 @@ namespace BierPongTurnier.Model
                 int points = 0;
                 foreach (Game g in this.Group.Games)
                 {
-                    var result = g.GetResult(t);
+                    var result = g.ResultForTeam(t);
                     switch (result)
                     {
                         case GameResult.WIN:

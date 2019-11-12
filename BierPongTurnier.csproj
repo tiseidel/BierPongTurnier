@@ -112,13 +112,14 @@
       <DependentUpon>ControlWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Game.cs" />
-    <Compile Include="Model\GameResult.cs" />
+    <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Ui\Converter\HighlightWinnerConverter.cs" />
     <Compile Include="Model\RankingController.cs" />
     <Compile Include="Model\RankingEntry.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\Tournament.cs" />
+    <Compile Include="Ui\GameViewModel.cs" />
     <Compile Include="Ui\ModeSelectionWindow.xaml.cs">
       <DependentUpon>ModeSelectionWindow.xaml</DependentUpon>
     </Compile>

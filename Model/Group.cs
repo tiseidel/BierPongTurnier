@@ -1,4 +1,5 @@
 ﻿using BierPongTurnier.Common;
+using BierPongTurnier.Ui;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -10,18 +11,18 @@ namespace BierPongTurnier.Model
 
         public ObservableCollection<Team> Teams { get; }
 
-        public CascadingObservableCollection<Game> Games { get; }
+        public CascadingObservableCollection<GameViewModel> Games { get; }
 
         public RankingController Ranking { get; }
 
         public Group() : base()
         {
             this.Teams = new ObservableCollection<Team>();
-            this.Games = new CascadingObservableCollection<Game>();
+            this.Games = new CascadingObservableCollection<GameViewModel>();
             this.Ranking = new RankingController(this);
 
-            this.Teams.CollectionChanged += (o, e) => this.Ranking.Calculate();
-            this.Games.CollectionChanged += this.Teams_CollectionChanged;
+            this.Teams.CollectionChanged += this.Teams_CollectionChanged;
+            this.Games.CollectionChanged += (o, e) => this.Ranking.Calculate();
         }
 
         private void Teams_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
