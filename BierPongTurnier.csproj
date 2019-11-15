@@ -102,7 +102,6 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
     <Compile Include="Common\CascadingObservableCollection.cs" />
-    <Compile Include="Model\Enums.cs" />
     <Compile Include="Persist\GameDto.cs" />
     <Compile Include="Persist\GroupDto.cs" />
     <Compile Include="Persist\TeamDto.cs" />
