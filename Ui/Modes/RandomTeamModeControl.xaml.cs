@@ -144,7 +144,7 @@ namespace BierPongTurnier.Ui.Modes
             var list = s.Split('\r').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
             for (int i = 0; i < list.Count; i++)
             {
-                list[i] = list[i].Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
+                list[i] = list[i].Replace("\r\n", "").Replace("\n", "").Replace("\r", "").Trim();
             }
             return list;
         }

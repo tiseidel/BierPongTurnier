@@ -10,15 +10,20 @@ namespace BierPongTurnier.Ui.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var self = (TeamPosition)parameter;
-            var pos = (TeamPosition)value;
-
-            if (self == pos && pos != TeamPosition.NONE)
+            /*
+             * winner: The position of the winning team (left/right/none)
+             * self: The position this ui element represents
+             *
+             * If this ui elements represents the winner position -> display bold
+             */
+            try
             {
-                Console.WriteLine("HIGHLIGHT WINNER");
-                return FontWeights.Bold;
+                var winner = (TeamPosition)value;
+                var self = (TeamPosition)parameter;
+
+                return (self == winner && winner != TeamPosition.NONE) ? FontWeights.Bold : FontWeights.Normal;
             }
-            else
+            catch (Exception)
             {
                 return FontWeights.Normal;
             }
