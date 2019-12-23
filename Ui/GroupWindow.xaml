@@ -14,8 +14,11 @@
         </Style>
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Height" Value="35" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#AAA" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
         <Style x:Key="DataGridCellCentered" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
@@ -44,9 +47,8 @@
             <TextBlock
                 Grid.Row="0"
                 VerticalAlignment="Center"
-                FontSize="26"
+                FontSize="24"
                 FontWeight="Bold"
-                IsEnabled="False"
                 Text="{Binding Name, StringFormat={}Spiele - {0}}"
                 TextAlignment="Center" />
             <DataGrid
@@ -54,15 +56,21 @@
                 AlternatingRowBackground="#DDD"
                 AlternationCount="2"
                 AutoGenerateColumns="False"
+                CanUserAddRows="False"
                 CanUserDeleteRows="False"
-                CanUserResizeColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
                 CanUserResizeRows="False"
                 CanUserSortColumns="False"
+                HeadersVisibility="Column"
+                HorizontalScrollBarVisibility="Hidden"
                 ItemsSource="{Binding GameViewModels}"
                 PreviewMouseWheel="DataGrid_PreviewMouseWheel"
                 RowHeight="35"
-                SelectionMode="Single"
                 Style="{DynamicResource TableStyle}">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="4*"
@@ -94,12 +102,11 @@
                         IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBox
+            <TextBlock
                 Grid.Row="2"
-                VerticalAlignment="Center"
-                FontSize="26"
+                FontSize="24"
                 FontWeight="Bold"
-                Text="Tabelle"
+                Text="{Binding Name, StringFormat={}Tabelle - {0}}"
                 TextAlignment="Center" />
             <DataGrid
                 Grid.Row="3"
@@ -108,14 +115,20 @@
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
-                CanUserResizeColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
                 CanUserResizeRows="False"
                 CanUserSortColumns="False"
+                HeadersVisibility="Column"
+                HorizontalScrollBarVisibility="Hidden"
                 ItemsSource="{Binding Group.Ranking.Entries}"
                 PreviewMouseWheel="DataGrid_PreviewMouseWheel"
                 RowHeight="35"
                 SelectionMode="Single"
                 Style="{DynamicResource TableStyle}">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="16*"
