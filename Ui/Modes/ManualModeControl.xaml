@@ -3,7 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:BierPongTurnier.Ui.Modes">
-    <Grid>
+    <Grid Margin="8,0,8,8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
@@ -11,21 +15,43 @@
             <RowDefinition />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Vertical">
-            <TextBlock Style="{StaticResource InputDescription}" Text="Turniername" />
-            <TextBox Style="{StaticResource SingleLineInput}" Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            <TextBlock Style="{StaticResource InputDescription}" Text="Anzahl Teams" />
-            <TextBox Style="{StaticResource SingleLineInput}" Text="{Binding TeamCount, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Vertical">
-            <TextBlock Style="{StaticResource InputDescription}" Text="Anzahl Gruppen" />
-            <TextBox Style="{StaticResource SingleLineInput}" Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Style="{StaticResource InputDescription}"
+            Text="Turniername" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Style="{StaticResource SingleLineInput}"
+            Text="{Binding TournamentName, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Style="{StaticResource InputDescription}"
+            Text="Anzahl Teams" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource SingleLineInput}"
+            Text="{Binding TeamCount, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Style="{StaticResource InputDescription}"
+            Text="Anzahl Gruppen" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Style="{StaticResource SingleLineInput}"
+            Text="{Binding GroupCount, UpdateSourceTrigger=PropertyChanged}" />
+
         <Button
             Grid.Row="4"
-            Grid.Column="0"
+            Grid.Column="1"
             Command="{Binding StartCommand}"
             Style="{StaticResource BierPongStartButton}" />
     </Grid>

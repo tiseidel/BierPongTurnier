@@ -1,0 +1,92 @@
+﻿<Window
+    x:Class="BierPongTurnier.StartupWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="BierPong-Turnier"
+    WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            FontSize="60"
+            FontWeight="SemiBold"
+            Foreground="CornflowerBlue"
+            Text="BierPong-Turnier"
+            TextAlignment="Center" />
+        <Image
+            Grid.Row="1"
+            Grid.Column="1"
+            Source="Assets/BeerPongIcon.png" />
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="1"
+                Padding="0,8"
+                Background="CornflowerBlue"
+                BorderThickness="0"
+                Command="{Binding ShowModePlayerCommand}">
+                <TextBlock
+                    FontSize="24"
+                    Foreground="White"
+                    Text="Spieler" />
+            </Button>
+            <Button
+                Grid.Column="3"
+                Padding="0,8"
+                Background="CornflowerBlue"
+                BorderThickness="0"
+                Command="{Binding ShowModeTeamCommand}">
+                <TextBlock
+                    FontSize="24"
+                    Foreground="White"
+                    Text="Teams" />
+            </Button>
+            <Button
+                Grid.Column="5"
+                Padding="0,8"
+                Background="CornflowerBlue"
+                BorderThickness="0"
+                Command="{Binding ShowModeManualCommand}">
+                <TextBlock
+                    FontSize="24"
+                    Foreground="White"
+                    Text="Manuell" />
+            </Button>
+        </Grid>
+        <Button
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="0,8"
+            Padding="4,2"
+            HorizontalAlignment="Center"
+            Background="White"
+            BorderThickness="0"
+            Command="{Binding LoadTournamentCommand}">
+            <TextBlock
+                FontSize="24"
+                Foreground="CornflowerBlue"
+                Text="Turnier laden" />
+        </Button>
+    </Grid>
+</Window>

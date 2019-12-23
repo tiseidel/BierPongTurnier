@@ -98,6 +98,9 @@
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Common\Command.cs" />
+    <Compile Include="StartupWindow.xaml.cs">
+      <DependentUpon>StartupWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TournamentCreator.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
@@ -121,12 +124,6 @@
     <Compile Include="Model\Tournament.cs" />
     <Compile Include="Ui\GameViewModel.cs" />
     <Compile Include="Ui\GroupViewModel.cs" />
-    <Compile Include="Ui\ModeSelectionWindow.xaml.cs">
-      <DependentUpon>ModeSelectionWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Ui\Modes\ImportModeControl.xaml.cs">
-      <DependentUpon>ImportModeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ui\Modes\ITournamentStartMode.cs" />
     <Compile Include="Ui\Modes\ManualModeControl.xaml.cs">
       <DependentUpon>ManualModeControl.xaml</DependentUpon>
@@ -140,6 +137,10 @@
     <Compile Include="Settings\AddDeleteTeamSetting.cs" />
     <Compile Include="Settings\AddGameSetting.cs" />
     <Compile Include="Settings\Setting.cs" />
+    <Page Include="StartupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ui\ControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,14 +157,6 @@
       <DependentUpon>GroupWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ui\ModeSelectionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Ui\Modes\ImportModeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Ui\Modes\ManualModeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,8 +209,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Resource Include="Assets\BeerPongIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
