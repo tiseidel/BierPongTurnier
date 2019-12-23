@@ -24,12 +24,12 @@
         <Style x:Key="TeamLeftCell" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
-            <Setter Property="TextBlock.FontWeight" Value="{Binding WinnerPosition, Converter={StaticResource HighlightWinnerConverter}, ConverterParameter={x:Static model:TeamPosition.FIRST}}" />
+            <Setter Property="TextBlock.FontWeight" Value="{Binding Team1Font}" />
         </Style>
         <Style x:Key="TeamRightCell" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
-            <Setter Property="TextBlock.FontWeight" Value="{Binding WinnerPosition, Converter={StaticResource HighlightWinnerConverter}, ConverterParameter={x:Static model:TeamPosition.SECOND}}" />
+            <Setter Property="TextBlock.FontWeight" Value="{Binding Team2Font}" />
 
         </Style>
     </Window.Resources>
@@ -73,14 +73,14 @@
                         IsReadOnly="True" />
                     <DataGridTextColumn
                         Width="1*"
-                        Binding="{Binding Beers1Input}"
+                        Binding="{Binding Beers1Input, Mode=TwoWay}"
                         CellStyle="{StaticResource TeamLeftCell}"
                         FontSize="20"
                         Header="Biere"
                         IsReadOnly="False" />
                     <DataGridTextColumn
                         Width="1*"
-                        Binding="{Binding Beers2Input}"
+                        Binding="{Binding Beers2Input, Mode=TwoWay}"
                         CellStyle="{StaticResource TeamRightCell}"
                         FontSize="20"
                         Header="Biere"
