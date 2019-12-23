@@ -107,6 +107,8 @@ namespace BierPongTurnier.Ui
             this._beers1Input = game.Beers1 == Game.BEERS_NOT_SET ? "" : game.Beers1.ToString();
             this._beers2Input = game.Beers2 == Game.BEERS_NOT_SET ? "" : game.Beers2.ToString();
 
+            this.UpdateFonts();
+
             this.Game.PropertyChanged += this.Game_PropertyChanged;
         }
 
