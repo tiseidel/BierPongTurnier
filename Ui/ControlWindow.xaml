@@ -123,17 +123,17 @@
             Grid.ColumnSpan="4"
             VerticalAlignment="Center"
             FontSize="16"
-            Text="In Excel-Datei koonviertieren"
+            Text="Turnier zwischenspeichern"
             TextAlignment="Center" />
         <Button
             Grid.Row="5"
             Grid.ColumnSpan="4"
-            Command="{Binding ExportCSVSetting.ExportCommand}">
+            Command="{Binding QuickSaveSetting.ExportCommand}">
             <Button.Content>
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Text="Export CSV" />
+                    Text="Speichern" />
             </Button.Content>
         </Button>
     </Grid>

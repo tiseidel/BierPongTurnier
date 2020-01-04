@@ -98,6 +98,12 @@
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Common\Command.cs" />
+    <Compile Include="Persist\CsvExportService.cs" />
+    <Compile Include="Persist\Dto\GameDto.cs" />
+    <Compile Include="Persist\IExportService.cs" />
+    <Compile Include="Persist\IImportService.cs" />
+    <Compile Include="Persist\JsonService.cs" />
+    <Compile Include="Persist\LocalFileExportServiceBase.cs" />
     <Compile Include="StartupWindow.xaml.cs">
       <DependentUpon>StartupWindow.xaml</DependentUpon>
     </Compile>
@@ -105,11 +111,10 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Model\BPTObject.cs" />
     <Compile Include="Common\CascadingObservableCollection.cs" />
-    <Compile Include="Persist\GameDto.cs" />
-    <Compile Include="Persist\GroupDto.cs" />
-    <Compile Include="Persist\TeamDto.cs" />
-    <Compile Include="Persist\TournamentDto.cs" />
-    <Compile Include="Settings\ExportCSVSetting.cs" />
+    <Compile Include="Persist\Dto\GroupDto.cs" />
+    <Compile Include="Persist\Dto\TeamDto.cs" />
+    <Compile Include="Persist\Dto\TournamentDto.cs" />
+    <Compile Include="Settings\QuickSaveSetting.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Ui\ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>

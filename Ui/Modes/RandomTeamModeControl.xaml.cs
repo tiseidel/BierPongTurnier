@@ -106,7 +106,7 @@ namespace BierPongTurnier.Ui.Modes
             this?.StartTournamentCallback.Start(new Tournament(groups)
             {
                 Name = this.TournamentName
-            });
+            }, true);
         }
 
         private void ParseInput(string s)

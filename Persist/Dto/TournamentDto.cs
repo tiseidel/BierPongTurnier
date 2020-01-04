@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BierPongTurnier.Persist
+namespace BierPongTurnier.Persist.Dto
 {
     internal class TournamentDto
     {

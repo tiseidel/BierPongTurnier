@@ -9,7 +9,7 @@ namespace BierPongTurnier
 {
     public interface IStartTournamentCallback
     {
-        void Start(Tournament tournament);
+        void Start(Tournament tournament, bool isNew);
     }
 
     public partial class App : Application

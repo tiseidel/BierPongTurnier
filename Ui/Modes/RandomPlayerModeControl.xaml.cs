@@ -7,13 +7,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
-using Group = BierPongTurnier.Model.Group;
 
 namespace BierPongTurnier.Ui.Modes
 {
     public partial class RandomPlayerModeControl : UserControl, INotifyPropertyChanged, ITournamentStartMode
     {
-        private Random random = new Random();
+        private readonly Random random = new Random();
 
         private string _tournamentName;
 
@@ -106,7 +105,7 @@ namespace BierPongTurnier.Ui.Modes
             this?.StartTournamentCallback.Start(new Tournament(groups)
             {
                 Name = this.TournamentName
-            });
+            }, true);
         }
 
         private void ParseInput(string s)

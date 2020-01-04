@@ -1,10 +1,12 @@
 ﻿using BierPongTurnier.Common;
 using BierPongTurnier.Model;
 using BierPongTurnier.Persist;
+using BierPongTurnier.Persist.Dto;
 using BierPongTurnier.Ui;
 using BierPongTurnier.Ui.Modes;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,15 +51,21 @@ namespace BierPongTurnier
             var openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                var json = File.ReadAllText(openFileDialog.FileName);
-                var tournament = JsonConvert.DeserializeObject<TournamentDto>(json).Convert();
-                this.Start(tournament);
+                try
+                {
+                    var tournament = new JsonService().Import(openFileDialog.FileName);
+                    this.Start(tournament, false);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Datei konnte nicht geladen werden (Bitte eine .beer-Datei auswählen).", "Fehler beim Laden");
+                }
             }
         }
 
-        public void Start(Tournament tournament)
+        public void Start(Tournament tournament, bool isNew)
         {
-            new ControlWindow(tournament).Show();
+            new ControlWindow(tournament, isNew).Show();
 
             foreach (Group g in tournament.Groups)
             {

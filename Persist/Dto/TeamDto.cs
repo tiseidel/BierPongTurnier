@@ -1,7 +1,7 @@
 ﻿using BierPongTurnier.Model;
 using System;
 
-namespace BierPongTurnier.Persist
+namespace BierPongTurnier.Persist.Dto
 {
     internal class TeamDto
     {

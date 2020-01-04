@@ -21,18 +21,23 @@ namespace BierPongTurnier.Ui
 
         public AddGameSetting AddGameSetting { get; }
 
-        public ExportCSVSetting ExportCSVSetting { get; }
+        public QuickSaveSetting QuickSaveSetting { get; }
 
         public Tournament Tournament { get; }
 
-        public ControlWindow(Tournament tournament)
+        public ControlWindow(Tournament tournament, bool isNew)
         {
             this.InitializeComponent();
 
             this.Tournament = tournament;
             this.AddDeleteTeamSetting = new AddDeleteTeamSetting(tournament);
             this.AddGameSetting = new AddGameSetting(tournament);
-            this.ExportCSVSetting = new ExportCSVSetting(tournament);
+            this.QuickSaveSetting = new QuickSaveSetting(tournament);
+
+            if (isNew)
+            {
+                this.QuickSaveSetting.Export(false);
+            }
 
             this.DataContext = this;
 
@@ -59,7 +64,7 @@ namespace BierPongTurnier.Ui
 
         public void DataChanged()
         {
-            this.ExportCSVSetting.ToCSV(true);
+            this.QuickSaveSetting.Export(true);
         }
     }
 }
