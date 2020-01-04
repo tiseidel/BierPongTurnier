@@ -25,6 +25,21 @@ namespace BierPongTurnier.Ui
 
         public Tournament Tournament { get; }
 
+        private bool _isAccidentalCloseSecureEnabled = GroupWindow.IsAccidentalCloseSecureEnabled;
+
+        public bool IsAccidentalCloseSecureEnabled
+        {
+            get => this._isAccidentalCloseSecureEnabled; set
+            {
+                if (value != this._isAccidentalCloseSecureEnabled)
+                {
+                    this._isAccidentalCloseSecureEnabled = value;
+                    GroupWindow.IsAccidentalCloseSecureEnabled = value;
+                    this.OnPropertyChanged();
+                }
+            }
+        }
+
         public ControlWindow(Tournament tournament, bool isNew)
         {
             this.InitializeComponent();

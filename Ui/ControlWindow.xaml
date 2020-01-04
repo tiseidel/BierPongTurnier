@@ -120,14 +120,14 @@
         <TextBlock
             Grid.Row="4"
             Grid.Column="0"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="2"
             VerticalAlignment="Center"
             FontSize="16"
             Text="Turnier zwischenspeichern"
             TextAlignment="Center" />
         <Button
             Grid.Row="5"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="2"
             Command="{Binding QuickSaveSetting.ExportCommand}">
             <Button.Content>
                 <TextBlock
@@ -136,5 +136,21 @@
                     Text="Speichern" />
             </Button.Content>
         </Button>
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            FontSize="16"
+            Text="Schließschutz"
+            TextAlignment="Center" />
+        <CheckBox
+            Grid.Row="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Schließßschutz"
+            IsChecked="{Binding IsAccidentalCloseSecureEnabled}" />
     </Grid>
 </Window>

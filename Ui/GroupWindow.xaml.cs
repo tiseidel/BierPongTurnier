@@ -6,6 +6,8 @@ namespace BierPongTurnier.Ui
 {
     public partial class GroupWindow : Window
     {
+        public static bool IsAccidentalCloseSecureEnabled = false;
+
         public GroupViewModel ViewModel { get; }
 
         public GroupWindow(GroupViewModel viewModel)
@@ -20,7 +22,7 @@ namespace BierPongTurnier.Ui
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = this.closeCount++ < Constants.CLOSE_WINDOW_SAFETY;
+            e.Cancel = GroupWindow.IsAccidentalCloseSecureEnabled && this.closeCount++ < Constants.CLOSE_WINDOW_SAFETY;
         }
 
         private void DataGrid_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
