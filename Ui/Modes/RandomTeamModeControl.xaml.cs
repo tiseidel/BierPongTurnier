@@ -7,7 +7,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
-using Group = BierPongTurnier.Model.Group;
 
 namespace BierPongTurnier.Ui.Modes
 {
@@ -117,13 +116,19 @@ namespace BierPongTurnier.Ui.Modes
                 return;
             }
 
-            RegexOptions options = RegexOptions.None;
-            Regex regex = new Regex("[ ]{2,}", options);
+            s = this.CleanupInput(s);
+
+            this.TeamCount = s.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+        }
+
+        private string CleanupInput(string s)
+        {
+
+            Regex regex = new Regex("[ ]{2,}", RegexOptions.None);
             s = regex.Replace(s, " ");
+            s = s.Replace(",", Environment.NewLine);
 
-            s = s.Replace(",", "\n");
-
-            this.TeamCount = s.Split('\n').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+            return s;
         }
 
         private List<string> Convert()
@@ -135,16 +140,13 @@ namespace BierPongTurnier.Ui.Modes
                 return new List<string>();
             }
 
-            RegexOptions options = RegexOptions.None;
-            Regex regex = new Regex("[ ]{2,}", options);
-            s = regex.Replace(s, " ");
+            s = this.CleanupInput(s);
 
-            s = s.Replace(",", "\r");
 
-            var list = s.Split('\r').Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            var list = s.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
             for (int i = 0; i < list.Count; i++)
             {
-                list[i] = list[i].Replace("\r\n", "").Replace("\n", "").Replace("\r", "").Trim();
+                list[i] = list[i].Replace(Environment.NewLine, string.Empty).Trim();
             }
             return list;
         }

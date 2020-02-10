@@ -1,0 +1,117 @@
+﻿<Window
+    x:Class="BierPongTurnier.Ui.RegistrationSelectionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:BierPongTurnier.Ui.Converter"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    Title="Turnier auswählen"
+    Width="900"
+    Height="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <converter:DateConverter x:Key="DateConverter" />
+            <converter:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox
+            x:Name="RegistrationListBox"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            HorizontalContentAlignment="Stretch"
+            ItemsSource="{Binding Registrations}"
+            SelectedItem="{Binding SelectedRegistration}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            FontSize="24"
+                            FontWeight="SemiBold"
+                            Foreground="CornflowerBlue"
+                            Text="{Binding Begin, Converter={StaticResource DateConverter}}" />
+                        <fa:ImageAwesome
+                            Grid.Column="1"
+                            Width="24"
+                            Height="24"
+                            Margin="0,0,4,0"
+                            HorizontalAlignment="Right"
+                            Foreground="CornflowerBlue"
+                            Icon="AngleRight" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <fa:ImageAwesome
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="48"
+            Height="48"
+            HorizontalAlignment="Center"
+            Icon="Spinner"
+            Spin="{Binding IsLoading}"
+            SpinDuration="2"
+            Visibility="{Binding IsLoading, Converter={StaticResource BoolVisibilityConverter}}" />
+        <ListBox
+            Grid.Row="0"
+            Grid.Column="1"
+            ItemsSource="{Binding SelectedRegistration.Teams}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="CornflowerBlue">
+                        <Grid
+                            Width="180"
+                            Margin="1"
+                            Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Padding="8"
+                                FontSize="16"
+                                Text="{Binding Player1Name}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Padding="8"
+                                FontSize="16"
+                                Text="{Binding Player2Name}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Padding="4"
+            HorizontalAlignment="Right"
+            Background="CornflowerBlue"
+            BorderThickness="0"
+            Command="{Binding RegistrationSelectedCommand}"
+            Content="Auswählen"
+            FontSize="22"
+            FontWeight="SemiBold"
+            Foreground="White" />
+    </Grid>
+</Window>

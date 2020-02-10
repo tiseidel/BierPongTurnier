@@ -7,7 +7,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="10*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -30,19 +30,27 @@
             Grid.Row="1"
             Grid.Column="1"
             Source="Assets/BeerPongIcon.png" />
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="8" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="8" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="46" />
+            </Grid.RowDefinitions>
             <Button
+                Grid.Row="0"
                 Grid.Column="1"
-                Padding="0,8"
                 Background="CornflowerBlue"
                 BorderThickness="0"
                 Command="{Binding ShowModePlayerCommand}">
@@ -52,8 +60,8 @@
                     Text="Spieler" />
             </Button>
             <Button
+                Grid.Row="0"
                 Grid.Column="3"
-                Padding="0,8"
                 Background="CornflowerBlue"
                 BorderThickness="0"
                 Command="{Binding ShowModeTeamCommand}">
@@ -63,8 +71,8 @@
                     Text="Teams" />
             </Button>
             <Button
+                Grid.Row="0"
                 Grid.Column="5"
-                Padding="0,8"
                 Background="CornflowerBlue"
                 BorderThickness="0"
                 Command="{Binding ShowModeManualCommand}">
@@ -73,20 +81,29 @@
                     Foreground="White"
                     Text="Manuell" />
             </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Background="CornflowerBlue"
+                BorderThickness="0"
+                Command="{Binding LoadTournamentCommand}">
+                <TextBlock
+                    FontSize="24"
+                    Foreground="White"
+                    Text="Turnier laden" />
+            </Button>
+            <Button
+                Grid.Row="2"
+                Grid.Column="5"
+                Background="CornflowerBlue"
+                BorderThickness="0"
+                Command="{Binding ImportRegistrationCommand}">
+                <TextBlock
+                    FontSize="24"
+                    Foreground="White"
+                    Text="Teams importieren" />
+            </Button>
         </Grid>
-        <Button
-            Grid.Row="3"
-            Grid.Column="1"
-            Margin="0,8"
-            Padding="4,2"
-            HorizontalAlignment="Center"
-            Background="White"
-            BorderThickness="0"
-            Command="{Binding LoadTournamentCommand}">
-            <TextBlock
-                FontSize="24"
-                Foreground="CornflowerBlue"
-                Text="Turnier laden" />
-        </Button>
+
     </Grid>
 </Window>
