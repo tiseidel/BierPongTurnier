@@ -33,7 +33,6 @@
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
             <Setter Property="TextBlock.FontWeight" Value="{Binding Team2Font}" />
-
         </Style>
     </Window.Resources>
     <ScrollViewer x:Name="scroll">

@@ -169,6 +169,7 @@ namespace BierPongTurnier
                         }
                     }
                     break;
+
                 case 6:
                     {
                         int[,] m =

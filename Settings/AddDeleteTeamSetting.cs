@@ -1,6 +1,5 @@
 ﻿using BierPongTurnier.Common;
 using BierPongTurnier.Model;
-using BierPongTurnier.Ui;
 using System.Linq;
 using System.Windows;
 

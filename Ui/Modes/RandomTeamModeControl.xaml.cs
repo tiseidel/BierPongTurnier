@@ -123,7 +123,6 @@ namespace BierPongTurnier.Ui.Modes
 
         private string CleanupInput(string s)
         {
-
             Regex regex = new Regex("[ ]{2,}", RegexOptions.None);
             s = regex.Replace(s, " ");
             s = s.Replace(",", Environment.NewLine);
@@ -141,7 +140,6 @@ namespace BierPongTurnier.Ui.Modes
             }
 
             s = this.CleanupInput(s);
-
 
             var list = s.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
             for (int i = 0; i < list.Count; i++)

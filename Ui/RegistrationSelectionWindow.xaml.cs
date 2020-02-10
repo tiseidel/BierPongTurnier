@@ -20,13 +20,5 @@ namespace BierPongTurnier.Ui
             this.ViewModel = new RegistrationSelectionViewModel();
             this.DataContext = this.ViewModel;
         }
-
-        private void ListBox_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            if (!(VisualTreeHelper.GetChild(this.RegistrationListBox, 0) is Decorator border)) return;
-            if (!(border.Child is ScrollViewer scrollViewer)) return;
-
-            scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta/3);
-        }
     }
 }
