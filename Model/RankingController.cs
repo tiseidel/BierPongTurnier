@@ -46,17 +46,24 @@ namespace BierPongTurnier.Model
                 int beersGood = 0;
                 int beersBad = 0;
                 int points = 0;
+                int games = 0;
                 foreach (Game g in this.Group.Games)
                 {
                     var result = GameHelper.GetTeamResult(g, t);
                     switch (result)
                     {
                         case GameResult.WIN:
+                            games++;
                             points += Constants.POINTS_WIN;
                             break;
 
                         case GameResult.DRAW:
+                            games++;
                             points += Constants.POINTS_DRAW;
+                            break;
+
+                        case GameResult.LOSE:
+                            games++;
                             break;
 
                         case GameResult.OPEN:
@@ -69,6 +76,7 @@ namespace BierPongTurnier.Model
                 r.BeerScore.Good = beersGood;
                 r.BeerScore.Bad = beersBad;
                 r.Points = points;
+                r.Games = games;
             }
             return list;
         }

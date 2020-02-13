@@ -14,7 +14,7 @@
             <Setter Property="RowHeaderStyle" Value="{DynamicResource RowNumberStyle}" />
         </Style>
         <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Height" Value="35" />
+            <Setter Property="Height" Value="32" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="White" />
@@ -22,7 +22,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
         <Style x:Key="RowNumberStyle" TargetType="DataGridRowHeader">
-            <Setter Property="Width" Value="35" />
+            <Setter Property="Width" Value="32" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Padding" Value="4,0" />
@@ -30,17 +30,20 @@
             <Setter Property="Background" Value="#AAA" />
         </Style>
         <Style x:Key="DataGridCellCentered" TargetType="DataGridCell">
+            <Setter Property="TextBlock.FontSize" Value="20" />
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
         </Style>
         <Style x:Key="TeamLeftCell" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
+            <Setter Property="TextBlock.FontSize" Value="20" />
             <Setter Property="TextBlock.FontWeight" Value="{Binding Team1Font}" />
         </Style>
         <Style x:Key="TeamRightCell" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
+            <Setter Property="TextBlock.FontSize" Value="20" />
             <Setter Property="TextBlock.FontWeight" Value="{Binding Team2Font}" />
         </Style>
     </Window.Resources>
@@ -65,7 +68,7 @@
                 AlternationCount="2"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
-                CanUserDeleteRows="False"
+                CanUserDeleteRows="True"
                 CanUserReorderColumns="False"
                 CanUserResizeColumns="True"
                 CanUserResizeRows="False"
@@ -75,7 +78,7 @@
                 ItemsSource="{Binding GameViewModels}"
                 LoadingRow="DataGrid_LoadingRow"
                 PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                RowHeight="35"
+                RowHeight="32"
                 SelectionMode="Single"
                 Style="{DynamicResource TableStyle}">
                 <DataGrid.Resources>
@@ -83,31 +86,27 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Width="4*"
+                        Width="5*"
                         Binding="{Binding Team1.Name}"
                         CellStyle="{StaticResource TeamLeftCell}"
-                        FontSize="20"
                         Header="Team 1"
                         IsReadOnly="True" />
                     <DataGridTextColumn
                         Width="1*"
                         Binding="{Binding Beers1Input, Mode=TwoWay}"
                         CellStyle="{StaticResource TeamLeftCell}"
-                        FontSize="20"
-                        Header="Biere"
+                        Header="Bier"
                         IsReadOnly="False" />
                     <DataGridTextColumn
                         Width="1*"
                         Binding="{Binding Beers2Input, Mode=TwoWay}"
                         CellStyle="{StaticResource TeamRightCell}"
-                        FontSize="20"
-                        Header="Biere"
+                        Header="Bier"
                         IsReadOnly="False" />
                     <DataGridTextColumn
-                        Width="4*"
+                        Width="5*"
                         Binding="{Binding Team2.Name}"
                         CellStyle="{StaticResource TeamRightCell}"
-                        FontSize="20"
                         Header="Team 2"
                         IsReadOnly="True" />
                 </DataGrid.Columns>
@@ -134,7 +133,7 @@
                 ItemsSource="{Binding Group.Ranking.Entries}"
                 LoadingRow="DataGrid_LoadingRow"
                 PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                RowHeight="35"
+                RowHeight="32"
                 SelectionMode="Single"
                 Style="{DynamicResource TableStyle}">
                 <DataGrid.Resources>
@@ -142,33 +141,35 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Width="6*"
+                        Width="7*"
                         Binding="{Binding Team.Name}"
                         CellStyle="{StaticResource DataGridCellCentered}"
-                        FontSize="20"
                         FontWeight="Bold"
                         Header="Team" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding Games}"
+                        CellStyle="{StaticResource DataGridCellCentered}"
+                        Header="Sp."
+                        IsReadOnly="True" />
                     <DataGridTextColumn
                         Width="2*"
                         Binding="{Binding BeerScore}"
                         CellStyle="{StaticResource DataGridCellCentered}"
-                        FontSize="20"
                         Header="Biere"
                         IsReadOnly="True" />
                     <DataGridTextColumn
                         Width="1*"
                         Binding="{Binding BeerScore.Difference}"
                         CellStyle="{StaticResource DataGridCellCentered}"
-                        FontSize="20"
                         Header="Diff"
                         IsReadOnly="True" />
                     <DataGridTextColumn
                         Width="1*"
                         Binding="{Binding Points}"
                         CellStyle="{StaticResource DataGridCellCentered}"
-                        FontSize="20"
                         FontWeight="Bold"
-                        Header="Punkte"
+                        Header="Pkt."
                         IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
