@@ -59,11 +59,9 @@ namespace BierPongTurnier.Ui
             }
         }
 
-        private int closeCount = 0;
-
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = this.closeCount++ < Constants.CLOSE_WINDOW_SAFETY;
+            e.Cancel = this._isAccidentalCloseSecureEnabled;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
