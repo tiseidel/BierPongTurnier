@@ -10,7 +10,7 @@ namespace BierPongTurnier.Model
 
         public ObservableCollection<RankingEntry> Entries { get; }
 
-        private bool _lock = false;
+        private bool _isCalculating = false;
 
         public IAutoSaveCallback AutoSave { get; set; }
 
@@ -22,14 +22,25 @@ namespace BierPongTurnier.Model
 
         public void Calculate()
         {
-            if (this._lock)
+            if (this._isCalculating)
             {
                 return;
             }
 
-            this._lock = true;
+            this._isCalculating = true;
 
-            foreach (RankingEntry r in this.Entries)
+            var list = this.CalculateScores();
+            this.SortEntries(list);
+            this.SetEntries(list);
+
+            this.AutoSave?.DataChanged();
+            this._isCalculating = false;
+        }
+
+        private List<RankingEntry> CalculateScores()
+        {
+            var list = new List<RankingEntry>(this.Entries);
+            foreach (RankingEntry r in list)
             {
                 var t = r.Team;
                 int beersGood = 0;
@@ -37,7 +48,7 @@ namespace BierPongTurnier.Model
                 int points = 0;
                 foreach (Game g in this.Group.Games)
                 {
-                    var result = g.ResultForTeam(t);
+                    var result = GameHelper.GetTeamResult(g, t);
                     switch (result)
                     {
                         case GameResult.WIN:
@@ -52,74 +63,46 @@ namespace BierPongTurnier.Model
                         case GameResult.NOT_PARTICIPATED:
                             continue;
                     }
-                    beersGood += this.GetGoodBeers(g, t);
-                    beersBad += this.GetBadBeers(g, t);
+                    beersGood += GameHelper.GetGoodBeers(g, t);
+                    beersBad += GameHelper.GetBadBeers(g, t);
                 }
                 r.BeerScore.Good = beersGood;
                 r.BeerScore.Bad = beersBad;
                 r.Points = points;
             }
-            var list = new List<RankingEntry>(this.Entries);
-            list.Sort((l, r) => this.CompareStats(l, r));
+            return list;
+        }
+
+        private void SortEntries(List<RankingEntry> entries)
+        {
+            entries.Sort((l, r) =>
+            {
+                var c = l.Points.CompareTo(r.Points);
+                if (c != 0)
+                {
+                    return -c;
+                }
+                c = l.BeerScore.Difference.CompareTo(r.BeerScore.Difference);
+                if (c != 0)
+                {
+                    return -c;
+                }
+                c = l.BeerScore.Good.CompareTo(r.BeerScore.Good);
+                if (c != 0)
+                {
+                    return -c;
+                }
+
+                return l.BeerScore.Bad.CompareTo(r.BeerScore.Bad);
+            });
+        }
+
+        private void SetEntries(List<RankingEntry> entries)
+        {
             this.Entries.Clear();
-            foreach (RankingEntry r in list)
+            foreach (RankingEntry r in entries)
             {
                 this.Entries.Add(r);
-            }
-            this.AutoSave?.DataChanged();
-            this._lock = false;
-        }
-
-        private int CompareStats(RankingEntry l, RankingEntry r)
-        {
-            var c = l.Points.CompareTo(r.Points);
-            if (c != 0)
-            {
-                return -c;
-            }
-            c = l.BeerScore.Difference.CompareTo(r.BeerScore.Difference);
-            if (c != 0)
-            {
-                return -c;
-            }
-            c = l.BeerScore.Good.CompareTo(r.BeerScore.Good);
-            if (c != 0)
-            {
-                return -c;
-            }
-
-            return l.BeerScore.Bad.CompareTo(r.BeerScore.Bad);
-        }
-
-        private int GetGoodBeers(Game g, Team t)
-        {
-            if (t.Equals(g.Team1))
-            {
-                return g.Beers2 != -1 ? g.Beers2 : 0;
-            }
-            else if (t.Equals(g.Team2))
-            {
-                return g.Beers1 != -1 ? g.Beers1 : 0;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        private int GetBadBeers(Game g, Team t)
-        {
-            if (t.Equals(g.Team1))
-            {
-                return g.Beers1 != -1 ? g.Beers1 : 0;
-            }
-            else if (t.Equals(g.Team2))
-            {
-                return g.Beers2 != -1 ? g.Beers2 : 0;
-            }
-            else
-            {
-                return 0;
             }
         }
     }

@@ -29,5 +29,10 @@ namespace BierPongTurnier.Ui
         {
             this.scroll.ScrollToVerticalOffset(this.scroll.VerticalOffset - e.Delta / 3);
         }
+
+        private void DataGrid_LoadingRow(object sender, System.Windows.Controls.DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1) + ".";
+        }
     }
 }

@@ -102,6 +102,8 @@
     </ApplicationDefinition>
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
     <Compile Include="Common\Command.cs" />
+    <Compile Include="Model\GameHelper.cs" />
+    <Compile Include="Model\Score.cs" />
     <Compile Include="Persist\CsvExportService.cs" />
     <Compile Include="Persist\Dto\GameDto.cs" />
     <Compile Include="Persist\IExportService.cs" />
