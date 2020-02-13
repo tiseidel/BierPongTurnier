@@ -6,6 +6,7 @@ namespace BierPongTurnier.Model
     public class BeerScore : BaseNotifyPropertyChanged
     {
         private int _beersGood;
+
         public int Good
         {
             get => this._beersGood; set
@@ -17,6 +18,7 @@ namespace BierPongTurnier.Model
         }
 
         private int _beersBad;
+
         public int Bad
         {
             get => this._beersBad; set
@@ -42,6 +44,7 @@ namespace BierPongTurnier.Model
         public BeerScore BeerScore { get; }
 
         private int _games;
+
         public int Games
         {
             get => this._games; set
@@ -52,6 +55,7 @@ namespace BierPongTurnier.Model
         }
 
         private int _points;
+
         public int Points
         {
             get => this._points; set

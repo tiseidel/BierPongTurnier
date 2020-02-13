@@ -6,10 +6,6 @@ using System.Windows;
 
 namespace BierPongTurnier.Ui
 {
-    /// <summary>
-    /// Interaction logic for ControlWindow.xaml
-    /// </summary>
-    ///
     public interface IAutoSaveCallback
     {
         void DataChanged();
