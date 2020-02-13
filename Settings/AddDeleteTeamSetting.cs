@@ -112,7 +112,7 @@ namespace BierPongTurnier.Settings
         {
             foreach (Game g in this._selectedGroup.Games)
             {
-                if (g.IsValid)
+                if (g.Score.IsValid)
                 {
                     return true;
                 }

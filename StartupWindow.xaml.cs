@@ -52,7 +52,10 @@ namespace BierPongTurnier
 
         private void ShowExisitingTournamentSelection()
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog()
+            {
+                Filter = "BeerPong-Dateien|*.beer;*.json;"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 try
@@ -91,6 +94,18 @@ namespace BierPongTurnier
             foreach (Group g in tournament.Groups)
             {
                 new GroupWindow(new GroupViewModel(g)).Show();
+            }
+        }
+
+        public void ShowErrorMessage(string title, string description)
+        {
+            MessageBoxResult result = MessageBox.Show(description, title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK || result == MessageBoxResult.Yes)
+            {
+                if (this._registrationSelectionWindow != null)
+                {
+                    this._registrationSelectionWindow.Close();
+                }
             }
         }
     }

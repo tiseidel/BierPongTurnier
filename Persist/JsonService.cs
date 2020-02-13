@@ -7,7 +7,7 @@ namespace BierPongTurnier.Persist
 {
     public class JsonService : LocalFileExportServiceBase, IImportService
     {
-        public JsonService() : base("json")
+        public JsonService() : base("beer")
         {
         }
 

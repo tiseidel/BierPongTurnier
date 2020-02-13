@@ -77,7 +77,7 @@ namespace BierPongTurnier.Persist
                     if (group.Games.Count > m)
                     {
                         var game = group.Games[m];
-                        s += $"{game.Team1.Name};{(game.Beers1 != -1 ? game.Beers1 + "" : "")};{(game.Beers2 != -1 ? game.Beers2 + "" : "")};{game.Team2.Name};" + divider;
+                        s += $"{game.Team1.Name};{(game.Score.Beers1 != Score.BEERS_NOT_SET ? game.Score.Beers1 + "" : "")};{(game.Score.Beers2 != Score.BEERS_NOT_SET ? game.Score.Beers2 + "" : "")};{game.Team2.Name};" + divider;
                     }
                     else
                     {

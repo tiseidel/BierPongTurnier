@@ -1,5 +1,6 @@
 ﻿using BierPongTurnier.Common;
 using BierPongTurnier.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -66,16 +67,27 @@ namespace BierPongTurnier.Ui
         public async Task LoadRegistrations()
         {
             this.IsLoading = true;
-            var ids = await this._tournamentRegistrationService.GetTournamentRegistrationIds();
-            if (ids.Count > 0)
+            try
             {
-                var regs = new List<TournamentRegistration>();
-                foreach (var id in ids)
+                var ids = await this._tournamentRegistrationService.GetTournamentRegistrationIds();
+                if (ids.Count > 0)
                 {
-                    var r = await this._tournamentRegistrationService.GetTournamentRegistration(id);
-                    regs.Add(r);
+                    var regs = new List<TournamentRegistration>();
+                    foreach (var id in ids)
+                    {
+                        var r = await this._tournamentRegistrationService.GetTournamentRegistration(id);
+                        regs.Add(r);
+                    }
+                    this.Registrations = regs;
                 }
-                this.Registrations = regs;
+                else
+                {
+                    this.NavigationCallback?.ShowErrorMessage("Keine Turniere gefunden", "Scheinbar wurden noch keine Turniere erstellt, oder sie konnten nicht gefunden werden.");
+                }
+            }
+            catch (Exception)
+            {
+                this.NavigationCallback?.ShowErrorMessage("Fehler beim Laden der Anmeldungen", "Die Daten konnten leider nicht geladen werden. Möglicherweise besteht keine Verbindung zum Server.");
             }
             this.IsLoading = false;
         }
