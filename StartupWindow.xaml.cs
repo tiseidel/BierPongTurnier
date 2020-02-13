@@ -52,7 +52,10 @@ namespace BierPongTurnier
 
         private void ShowExisitingTournamentSelection()
         {
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog()
+            {
+                Filter = "BeerPong-Dateien|*.beer;*.json;"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 try
