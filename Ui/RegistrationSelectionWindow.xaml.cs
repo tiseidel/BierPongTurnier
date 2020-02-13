@@ -8,6 +8,8 @@ namespace BierPongTurnier.Ui
         internal interface INavigationCallback
         {
             void GotoTeamModeWindow(List<string> teams);
+
+            void ShowErrorMessage(string title, string description);
         }
 
         public RegistrationSelectionViewModel ViewModel { get; }

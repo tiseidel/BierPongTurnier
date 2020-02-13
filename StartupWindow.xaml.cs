@@ -93,5 +93,17 @@ namespace BierPongTurnier
                 new GroupWindow(new GroupViewModel(g)).Show();
             }
         }
+
+        public void ShowErrorMessage(string title, string description)
+        {
+            MessageBoxResult result = MessageBox.Show(description, title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK || result == MessageBoxResult.Yes)
+            {
+                if (this._registrationSelectionWindow != null)
+                {
+                    this._registrationSelectionWindow.Close();
+                }
+            }
+        }
     }
 }

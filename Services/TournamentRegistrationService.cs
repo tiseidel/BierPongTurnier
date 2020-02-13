@@ -26,14 +26,8 @@ namespace BierPongTurnier.Services
             var content = await response.Content.ReadAsStringAsync();
 
             Console.WriteLine(content);
-            try
-            {
-                return JsonConvert.DeserializeObject<TournamentRegistration>(content);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+
+            return JsonConvert.DeserializeObject<TournamentRegistration>(content);
         }
 
         public async Task<List<int>> GetTournamentRegistrationIds()
@@ -42,14 +36,8 @@ namespace BierPongTurnier.Services
             var content = await response.Content.ReadAsStringAsync();
 
             Console.WriteLine(content);
-            try
-            {
-                return JsonConvert.DeserializeObject<List<int>>(content);
-            }
-            catch (Exception)
-            {
-                return new List<int>();
-            }
+
+            return JsonConvert.DeserializeObject<List<int>>(content);
         }
     }
 }
