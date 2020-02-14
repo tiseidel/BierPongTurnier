@@ -143,6 +143,8 @@
     <Compile Include="Model\RankingEntry.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\Tournament.cs" />
+    <Compile Include="Ui\Converter\PlayPauseConverter.cs" />
+    <Compile Include="Ui\Converter\SecondsToTimeConverter.cs" />
     <Compile Include="Ui\GameViewModel.cs" />
     <Compile Include="Ui\GroupViewModel.cs" />
     <Compile Include="Ui\Modes\ITournamentStartMode.cs" />
@@ -243,6 +245,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\favicon_96x96.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\outline_pause_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\outline_play_arrow_black_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\baseline_replay_black_36dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

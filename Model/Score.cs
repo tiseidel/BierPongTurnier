@@ -36,6 +36,15 @@ namespace BierPongTurnier.Model
             }
         }
 
+
+
         public bool IsValid => this.Beers1 != BEERS_NOT_SET && this.Beers2 != BEERS_NOT_SET;
+
+        public override bool Equals(object obj)
+        {
+            return obj is Score score &&
+                   this._beers1 == score._beers1 &&
+                   this._beers2 == score._beers2;
+        }
     }
 }

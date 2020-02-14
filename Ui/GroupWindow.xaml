@@ -8,7 +8,9 @@
     Width="600"
     Height="450">
     <Window.Resources>
+        <converter:SecondsToTimeConverter x:Key="SecondsToTimeConverter" />
         <converter:HighlightWinnerConverter x:Key="HighlightWinnerConverter" />
+        <converter:PlayPauseConverter x:Key="PlayPauseConverter" />
         <Style x:Key="TableStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="ColumnHeaderStyle" Value="{DynamicResource HeaderStyle}" />
             <Setter Property="RowHeaderStyle" Value="{DynamicResource RowNumberStyle}" />
@@ -34,145 +36,211 @@
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
             <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
         </Style>
-        <Style x:Key="TeamLeftCell" TargetType="DataGridCell">
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
-            <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
-            <Setter Property="TextBlock.FontSize" Value="20" />
+        <Style
+            x:Key="TeamLeftCell"
+            BasedOn="{StaticResource DataGridCellCentered}"
+            TargetType="DataGridCell">
             <Setter Property="TextBlock.FontWeight" Value="{Binding Team1Font}" />
         </Style>
-        <Style x:Key="TeamRightCell" TargetType="DataGridCell">
-            <Setter Property="TextBlock.TextAlignment" Value="Center" />
-            <Setter Property="TextBlock.Padding" Value="0,4,0,4" />
-            <Setter Property="TextBlock.FontSize" Value="20" />
+        <Style
+            x:Key="TeamLeftCellBorder"
+            BasedOn="{StaticResource TeamLeftCell}"
+            TargetType="DataGridCell">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1,0,1,0" />
+        </Style>
+        <Style
+            x:Key="TeamRightCell"
+            BasedOn="{StaticResource DataGridCellCentered}"
+            TargetType="DataGridCell">
             <Setter Property="TextBlock.FontWeight" Value="{Binding Team2Font}" />
         </Style>
+        <Style
+            x:Key="TeamRightCellBorder"
+            BasedOn="{StaticResource TeamRightCell}"
+            TargetType="DataGridCell">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
     </Window.Resources>
-    <ScrollViewer x:Name="scroll">
+    <Grid Margin="4,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
+                <RowDefinition Height="10" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="32" />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Row="0"
-                VerticalAlignment="Center"
+                Grid.Column="0"
+                Padding="4,0"
                 FontSize="24"
                 FontWeight="Bold"
-                Text="{Binding Name, StringFormat={}Spiele - {0}}"
-                TextAlignment="Center" />
-            <DataGrid
-                Grid.Row="1"
-                AlternatingRowBackground="#DDD"
-                AlternationCount="2"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserDeleteRows="True"
-                CanUserReorderColumns="False"
-                CanUserResizeColumns="True"
-                CanUserResizeRows="False"
-                CanUserSortColumns="False"
-                HeadersVisibility="All"
-                HorizontalScrollBarVisibility="Hidden"
-                ItemsSource="{Binding GameViewModels}"
-                LoadingRow="DataGrid_LoadingRow"
-                PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                RowHeight="32"
-                SelectionMode="Single"
-                Style="{DynamicResource TableStyle}">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="5*"
-                        Binding="{Binding Team1.Name}"
-                        CellStyle="{StaticResource TeamLeftCell}"
-                        Header="Team 1"
-                        IsReadOnly="True" />
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding Beers1Input, Mode=TwoWay}"
-                        CellStyle="{StaticResource TeamLeftCell}"
-                        Header="Bier"
-                        IsReadOnly="False" />
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding Beers2Input, Mode=TwoWay}"
-                        CellStyle="{StaticResource TeamRightCell}"
-                        Header="Bier"
-                        IsReadOnly="False" />
-                    <DataGridTextColumn
-                        Width="5*"
-                        Binding="{Binding Team2.Name}"
-                        CellStyle="{StaticResource TeamRightCell}"
-                        Header="Team 2"
-                        IsReadOnly="True" />
-                </DataGrid.Columns>
-            </DataGrid>
+                Foreground="Black"
+                Text="{Binding Name, StringFormat={}{0}}" />
             <TextBlock
-                Grid.Row="2"
-                FontSize="24"
-                FontWeight="Bold"
-                Text="{Binding Name, StringFormat={}Tabelle - {0}}"
-                TextAlignment="Center" />
-            <DataGrid
-                Grid.Row="3"
-                AlternatingRowBackground="#DDD"
-                AlternationCount="2"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                CanUserReorderColumns="False"
-                CanUserResizeColumns="True"
-                CanUserResizeRows="False"
-                CanUserSortColumns="False"
-                HeadersVisibility="All"
-                HorizontalScrollBarVisibility="Hidden"
-                ItemsSource="{Binding Group.Ranking.Entries}"
-                LoadingRow="DataGrid_LoadingRow"
-                PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                RowHeight="32"
-                SelectionMode="Single"
-                Style="{DynamicResource TableStyle}">
-                <DataGrid.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Width="7*"
-                        Binding="{Binding Team.Name}"
-                        CellStyle="{StaticResource DataGridCellCentered}"
-                        FontWeight="Bold"
-                        Header="Team" />
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding Games}"
-                        CellStyle="{StaticResource DataGridCellCentered}"
-                        Header="Sp."
-                        IsReadOnly="True" />
-                    <DataGridTextColumn
-                        Width="2*"
-                        Binding="{Binding BeerScore}"
-                        CellStyle="{StaticResource DataGridCellCentered}"
-                        Header="Biere"
-                        IsReadOnly="True" />
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding BeerScore.Difference}"
-                        CellStyle="{StaticResource DataGridCellCentered}"
-                        Header="Diff"
-                        IsReadOnly="True" />
-                    <DataGridTextColumn
-                        Width="1*"
-                        Binding="{Binding Points}"
-                        CellStyle="{StaticResource DataGridCellCentered}"
-                        FontWeight="Bold"
-                        Header="Pkt."
-                        IsReadOnly="True" />
-                </DataGrid.Columns>
-            </DataGrid>
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="8,0"
+                FontSize="22"
+                Foreground="Black"
+                Text="{Binding GameDuration, Converter={StaticResource SecondsToTimeConverter}}" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding PlayPauseCommand}">
+                <Image Source="{Binding TimerState, Converter={StaticResource PlayPauseConverter}}" />
+            </Button>
+            <Button
+                Grid.Row="0"
+                Grid.Column="3"
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding ResetCommand}">
+                <Image Source="/Assets/baseline_replay_black_36dp.png" />
+            </Button>
+            <ProgressBar
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Background="LightBlue"
+                Foreground="CornflowerBlue"
+                Maximum="{Binding MaxGameDuration}"
+                Minimum="0"
+                Value="{Binding GameDuration}" />
         </Grid>
-    </ScrollViewer>
+        <ScrollViewer
+            x:Name="scroll"
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,4,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <DataGrid
+                    Grid.Row="0"
+                    AlternatingRowBackground="#DDD"
+                    AlternationCount="2"
+                    AutoGenerateColumns="False"
+                    BorderThickness="0"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="True"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    CanUserResizeRows="False"
+                    CanUserSortColumns="False"
+                    GridLinesVisibility="None"
+                    HeadersVisibility="Column"
+                    HorizontalScrollBarVisibility="Hidden"
+                    ItemsSource="{Binding GameViewModels}"
+                    LoadingRow="DataGrid_LoadingRow"
+                    PreviewMouseWheel="DataGrid_PreviewMouseWheel"
+                    RowHeight="32"
+                    SelectionMode="Single"
+                    Style="{DynamicResource TableStyle}">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="5*"
+                            Binding="{Binding Team1.Name}"
+                            CellStyle="{StaticResource TeamLeftCell}"
+                            Header="Team 1"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Beers1Input, Mode=TwoWay}"
+                            CellStyle="{StaticResource TeamLeftCellBorder}"
+                            Header="Bier"
+                            IsReadOnly="False" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Beers2Input, Mode=TwoWay}"
+                            CellStyle="{StaticResource TeamRightCellBorder}"
+                            Header="Bier"
+                            IsReadOnly="False" />
+                        <DataGridTextColumn
+                            Width="5*"
+                            Binding="{Binding Team2.Name}"
+                            CellStyle="{StaticResource TeamRightCell}"
+                            Header="Team 2"
+                            IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid
+                    Grid.Row="2"
+                    Margin="0,4,0,0"
+                    AlternatingRowBackground="#DDD"
+                    AlternationCount="2"
+                    AutoGenerateColumns="False"
+                    BorderThickness="0"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    CanUserResizeRows="False"
+                    CanUserSortColumns="False"
+                    GridLinesVisibility="Vertical"
+                    HeadersVisibility="All"
+                    HorizontalScrollBarVisibility="Hidden"
+                    ItemsSource="{Binding Group.Ranking.Entries}"
+                    LoadingRow="DataGrid_LoadingRow"
+                    PreviewMouseWheel="DataGrid_PreviewMouseWheel"
+                    RowHeight="32"
+                    SelectionMode="Single"
+                    Style="{DynamicResource TableStyle}">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="CornflowerBlue" />
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="7*"
+                            Binding="{Binding Team.Name}"
+                            CellStyle="{StaticResource DataGridCellCentered}"
+                            FontWeight="Bold"
+                            Header="Team" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Games}"
+                            CellStyle="{StaticResource DataGridCellCentered}"
+                            Header="Sp."
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding BeerScore}"
+                            CellStyle="{StaticResource DataGridCellCentered}"
+                            Header="Biere"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding BeerScore.Difference}"
+                            CellStyle="{StaticResource DataGridCellCentered}"
+                            Header="Diff"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Points}"
+                            CellStyle="{StaticResource DataGridCellCentered}"
+                            FontWeight="Bold"
+                            Header="Pkt."
+                            IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </Window>
