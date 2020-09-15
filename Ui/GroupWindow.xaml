@@ -62,6 +62,13 @@
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="0,0,1,0" />
         </Style>
+        <Style
+            x:Key="DataGridCellCenteredBorder"
+            BasedOn="{StaticResource DataGridCellCentered}"
+            TargetType="DataGridCell">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
     </Window.Resources>
     <Grid Margin="4,0">
         <Grid.RowDefinitions>
@@ -194,7 +201,7 @@
                     CanUserResizeColumns="True"
                     CanUserResizeRows="False"
                     CanUserSortColumns="False"
-                    GridLinesVisibility="Vertical"
+                    GridLinesVisibility="None"
                     HeadersVisibility="All"
                     HorizontalScrollBarVisibility="Hidden"
                     ItemsSource="{Binding Group.Ranking.Entries}"
@@ -210,25 +217,25 @@
                         <DataGridTextColumn
                             Width="7*"
                             Binding="{Binding Team.Name}"
-                            CellStyle="{StaticResource DataGridCellCentered}"
+                            CellStyle="{StaticResource DataGridCellCenteredBorder}"
                             FontWeight="Bold"
                             Header="Team" />
                         <DataGridTextColumn
                             Width="1*"
                             Binding="{Binding Games}"
-                            CellStyle="{StaticResource DataGridCellCentered}"
+                            CellStyle="{StaticResource DataGridCellCenteredBorder}"
                             Header="Sp."
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="2*"
                             Binding="{Binding BeerScore}"
-                            CellStyle="{StaticResource DataGridCellCentered}"
+                            CellStyle="{StaticResource DataGridCellCenteredBorder}"
                             Header="Biere"
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="1*"
                             Binding="{Binding BeerScore.Difference}"
-                            CellStyle="{StaticResource DataGridCellCentered}"
+                            CellStyle="{StaticResource DataGridCellCenteredBorder}"
                             Header="Diff"
                             IsReadOnly="True" />
                         <DataGridTextColumn
