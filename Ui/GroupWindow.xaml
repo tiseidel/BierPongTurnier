@@ -150,12 +150,12 @@
                     CanUserResizeRows="False"
                     CanUserSortColumns="False"
                     GridLinesVisibility="None"
-                    HeadersVisibility="Column"
+                    HeadersVisibility="All"
                     HorizontalScrollBarVisibility="Hidden"
                     ItemsSource="{Binding GameViewModels}"
                     LoadingRow="DataGrid_LoadingRow"
                     PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                    RowHeight="32"
+                    RowHeight="36"
                     SelectionMode="Single"
                     Style="{DynamicResource TableStyle}">
                     <DataGrid.Resources>
@@ -207,7 +207,7 @@
                     ItemsSource="{Binding Group.Ranking.Entries}"
                     LoadingRow="DataGrid_LoadingRow"
                     PreviewMouseWheel="DataGrid_PreviewMouseWheel"
-                    RowHeight="32"
+                    RowHeight="36"
                     SelectionMode="Single"
                     Style="{DynamicResource TableStyle}">
                     <DataGrid.Resources>
